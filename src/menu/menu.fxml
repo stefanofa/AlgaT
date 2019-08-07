@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Sphere?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.Menu">
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AlgaT" textAlignment="CENTER" wrappingWidth="602.7294921875" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="80.0" />
+         </font>
+      </Text>
+   </top>
+   <bottom>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="133.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crediti" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alma Mater Studiorum - Università di Bologna" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Hyperlink fx:id="stefanofa" onAction="#openLink" text="Stefano Faieta">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="lusvelt" layoutX="614.0" layoutY="92.0" onAction="#openLink" text="Damiano Scevola">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </VBox>
+   </bottom>
+   <center>
+      <Sphere fx:id="s" radius="50" visible="false" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
