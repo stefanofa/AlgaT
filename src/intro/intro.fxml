@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Sphere?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="intro.Intro">
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AlgaT" textAlignment="CENTER" wrappingWidth="602.7294921875" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="80.0" />
+         </font>
+      </Text>
+   </top>
+   <bottom>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="133.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crediti" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alma Mater Studiorum - Università di Bologna" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Hyperlink fx:id="stefanofa" onAction="#openLink" text="Stefano Faieta">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="lusvelt" onAction="#openLink" text="Damiano Scevola">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </VBox>
+   </bottom>
+   <left>
+      <ImageView fitHeight="157.0" fitWidth="282.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+   </left>
+   <right>
+      <Button mnemonicParsing="false" onAction="#Start" text="INIZIA" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets right="50.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+   </right>
+   <center>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuto in AlgaT!&#10;Tramite questo programma potrai esplorare ed interagire con la Struttura Dati &quot;HEAP&quot;, testando vari algoritmi ad essa correlati.&#10;Sono inoltre presenti varie lezioni seguite da un Quiz finale, in tal modo potrai renderti conto della tua effettiva comprensione dell'argomento!" wrappingWidth="861.45654296875" BorderPane.alignment="CENTER_LEFT">
+         <font>
+            <Font size="29.0" />
+         </font></Text>
+   </center>
+</BorderPane>
