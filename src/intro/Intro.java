@@ -13,7 +13,6 @@ import baseController.BaseController;
 
 public class Intro extends BaseController{
 
-    @FXML private BorderPane bp;
 
     @FXML private void openLink(ActionEvent event) {
         try {

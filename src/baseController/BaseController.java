@@ -10,7 +10,7 @@ public class BaseController {
 
     private Stage stage;
 
-    private Stage getActualStage () {
+    protected Stage getActualStage () {
         return this.stage;
     }
 

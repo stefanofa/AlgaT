@@ -5,8 +5,9 @@ import baseController.BaseController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.application.Platform;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 
 public class Menu extends BaseController {
 
@@ -15,8 +16,7 @@ public class Menu extends BaseController {
 
     }
 
-    @FXML
-    protected void learn(ActionEvent event) {
+    @FXML private void learn(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
         String topic, type, suffix;
         if (id.contains("Lesson")) {
@@ -31,10 +31,14 @@ public class Menu extends BaseController {
         switchSceneFromFxmlPath("../topics/" + topic + "/" + type + "/" + topic + suffix);
     }
 
-    @FXML
-    protected void goToQuiz(ActionEvent event) {
+    @FXML protected void goToQuiz(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
         switchSceneFromFxmlPath("../topics/" + id + "/quiz/" + id + "Quiz.fxml");
+    }
+
+    @FXML private void stop(ActionEvent event) {
+        System.out.println("Exiting application...");
+        Platform.exit();
     }
 
 
