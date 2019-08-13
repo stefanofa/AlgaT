@@ -77,10 +77,14 @@ def jsonify(obj) :
 
     return jsoned
 
-qList = createQuestionObject()
+def main():
+    qList = createQuestionObject()
 
-toWrite = jsonify(qList)
+    toWrite = jsonify(qList)
 
-out.write(toWrite)
+    out.write(toWrite)
 
-out.close()
+    out.close()
+
+if __name__== "__main__":
+    main()
