@@ -1,3 +1,5 @@
+import json
+
 topic = input("Inserisci il nome dell'argomento (es. HeapSort): ")
 out = open(topic+"Quiz.json","w")
 
@@ -31,6 +33,7 @@ def createQuestionObject():
             done = True
             return questionsList
 
+
 def jsonify(obj) :
     jsoned = "{\n"
 
@@ -54,8 +57,8 @@ def jsonify(obj) :
                 jsoned += ','
             jsoned += '\n'
 
-        jsoned += '\t\t\t\t\t\t\t' + ']\n'
-
+        jsoned += '\t\t\t\t\t\t\t' + '] ,\n'
+        jsoned += '"RispostaCorretta" : "1"\n'
 
         jsoned += '\t\t\t\t\t' + '}'
         if index != len(obj)-1 :
@@ -68,6 +71,10 @@ def jsonify(obj) :
 
 
     jsoned += "\n}"
+
+    d = json.loads(jsoned)
+    jsoned = json.dumps(d, indent=4)
+
     return jsoned
 
 qList = createQuestionObject()
