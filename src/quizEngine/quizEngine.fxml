@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizEngine.QuizEngine">
+   <children>
+      <StackPane fx:id="nDomandaPane" prefHeight="150.0" prefWidth="200.0" />
+      <VBox prefHeight="470.0" prefWidth="1366.0">
+         <children>
+            <StackPane fx:id="domandaPane" alignment="CENTER_LEFT" prefHeight="132.0" prefWidth="1366.0" />
+            <StackPane fx:id="rispostePane" prefHeight="345.0" prefWidth="1366.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goToMenu" text="ESCI">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#nextQuestion" text="Prossima Domanda">
+               <HBox.margin>
+                  <Insets left="700.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" style="-fx-border-color: green;">
+         <VBox.margin>
+            <Insets top="13.0" />
+         </VBox.margin>
+      </ProgressBar>
+   </children>
+</VBox>

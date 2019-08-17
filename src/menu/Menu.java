@@ -23,12 +23,14 @@ public class Menu extends BaseController {
             topic = id.replace("Lesson", "");
             type = "lesson";
             suffix = "Lesson.fxml";
+            switchSceneFromFxmlPath("../topics/" + topic + "/" + type + "/" + topic + suffix, topic);
         } else { // Contains "Quiz"
             topic = id.replace("Quiz", "");
             type = "quiz";
             suffix = "Quiz.fxml";
+            switchSceneFromFxmlPath("../quizEngine/quizEngine.fxml", topic);
         }
-        switchSceneFromFxmlPath("../topics/" + topic + "/" + type + "/" + topic + suffix);
+
     }
 
     @FXML protected void goToQuiz(ActionEvent event) {

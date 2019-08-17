@@ -1,4 +1,4 @@
-package lessons.priorityQueue;
+package topics.priorityQueue.lesson;
 
 public class PriorityQueueLesson {
 }

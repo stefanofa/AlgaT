@@ -1,0 +1,25 @@
+{
+    "Topic": "heap",
+    "nDomande": "2",
+    "Domande": [
+        {
+            "Domanda": "DOMANDA1",
+            "nRisposte": "3",
+            "Risposte": [
+                "vera",
+                "falsa",
+                "spazzatura"
+            ],
+            "RispostaCorretta": "1"
+        },
+        {
+            "Domanda": "DOMANDA2",
+            "nRisposte": "2",
+            "Risposte": [
+                "vera",
+                "falsa"
+            ],
+            "RispostaCorretta": "1"
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-package lessons.heap;
+package topics.heap.lesson;
 
 public class HeapLesson {
 

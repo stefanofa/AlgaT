@@ -1,4 +1,4 @@
-package lessons.heapsort;
+package topics.heapsort.lesson;
 
 public class HeapsortLesson {
 }
