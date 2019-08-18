@@ -1,32 +1,33 @@
 package quizEngine;
+
 import baseController.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
-
-import java.io.FileReader;
-import java.nio.file.FileSystem;
-import java.util.Iterator;
-import java.util.Stack;
-
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
-
-import org.json.simple.parser.JSONParser;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileReader;
 
 public class QuizEngine extends BaseController{
 
     @FXML StackPane domandaPane;
     @FXML StackPane nDomandaPane;
     @FXML ProgressBar progressBar;
-    @FXML StackPane rispostePane;
+
+    @FXML
+    RadioButton
+            Risposta1, Risposta2, Risposta3, Risposta4;
 
     private JSONObject quiz;
     private JSONArray domande;
@@ -35,6 +36,8 @@ public class QuizEngine extends BaseController{
 
     private int actualCheckedAnswer;
     private int actualCorrectAnswer;
+
+    private ToggleGroup toggleGroup;
 
     @Override protected void startCtrl() {
 
@@ -51,9 +54,35 @@ public class QuizEngine extends BaseController{
         //parameters initialized to start the question cycle
         this.actualCheckedAnswer = this.actualCorrectAnswer = 1;
 
+        toggleGroup = new ToggleGroup();
+        Risposta1.setToggleGroup(toggleGroup);
+        Risposta2.setToggleGroup(toggleGroup);
+        Risposta3.setToggleGroup(toggleGroup);
+        Risposta4.setToggleGroup(toggleGroup);
+
+        //set the ToggleGroup of Radio Buttons to intercept when the answer is changed and upload the value
+        //of actualCheckedAnswer
+        toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> uploadCheckedAnswer());
+
+
         nextQuestion();
 
 
+    }
+
+    //this is called from the listener of the Toggle Group when a Radio Button is pressed
+    private void uploadCheckedAnswer() {
+        RadioButton tmpRadio = (RadioButton) toggleGroup.getSelectedToggle();
+        String tmpID = tmpRadio.getId();
+
+        if (tmpID.contains("1"))
+            actualCheckedAnswer = 1;
+        else if (tmpID.contains("2"))
+            actualCheckedAnswer = 2;
+        else if (tmpID.contains("3"))
+            actualCheckedAnswer = 3;
+        else
+            actualCheckedAnswer = 4;
     }
 
 
@@ -94,16 +123,15 @@ public class QuizEngine extends BaseController{
 
 //------------------------------------------------------------------
 //  Set and show the answers
-        if (rispostePane.getChildren().size() != 0)
-            rispostePane.getChildren().remove(0);
-        //da implementare parsing e visualizzazione risposte su schermo, associate ad un checkbox
-        //ogni checkbox ha un suo id numerico che corrisponde al numero di risposta cliccata
-        //quando viene cliccato il checkbox viene chiamata una funzione di callback che aggiorna
-        //il numero del checkbox attualmente cliccato, dopodichè il controllo per verificare se la risposta
-        //é esatta viene fatto internamente alla funzione nextQuestion(), se è esatta permette di avanzare, altrimenti
-        //l'utente deve riprovare a rispondere
-//------------------------------------------------------------------
+        actualCorrectAnswer = Integer.parseInt(actDomanda.get("RispostaCorretta").toString());
+        JSONArray risposte = (JSONArray) actDomanda.get("Risposte");
 
+        Risposta1.setText(risposte.get(0).toString());
+        Risposta2.setText(risposte.get(1).toString());
+        Risposta3.setText(risposte.get(2).toString());
+        Risposta4.setText(risposte.get(3).toString());
+
+//------------------------------------------------------------------
 
 
     }
@@ -127,6 +155,13 @@ public class QuizEngine extends BaseController{
                 goToMenu(null);
             }
         } else {//if got wrong answer
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sbagliato!");
+            alert.setHeaderText(null);
+            alert.setContentText("Hai scelto la risposta sbagliata! \nPremi OK per riprovare");
+            alert.showAndWait();
+
             showQuestion();
         }
 

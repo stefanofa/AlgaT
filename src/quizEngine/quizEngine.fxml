@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.Font?>
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizEngine.QuizEngine">
    <children>
       <StackPane fx:id="nDomandaPane" prefHeight="150.0" prefWidth="200.0" />
       <VBox prefHeight="470.0" prefWidth="1366.0">
          <children>
-            <StackPane fx:id="domandaPane" alignment="CENTER_LEFT" prefHeight="132.0" prefWidth="1366.0" />
-            <StackPane fx:id="rispostePane" prefHeight="345.0" prefWidth="1366.0" />
+             <StackPane fx:id="domandaPane" prefHeight="132.0" prefWidth="1366.0"/>
+             <VBox prefHeight="359.0" prefWidth="1366.0">
+                 <children>
+                     <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+                         <children>
+                             <RadioButton fx:id="Risposta1" mnemonicParsing="false" text="RadioButton"/>
+                         </children>
+                         <padding>
+                             <Insets left="200.0"/>
+                         </padding>
+                     </StackPane>
+                     <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+                         <children>
+                             <RadioButton fx:id="Risposta2" mnemonicParsing="false" text="RadioButton"/>
+                         </children>
+                         <padding>
+                             <Insets left="200.0"/>
+                         </padding>
+                     </StackPane>
+                     <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+                         <children>
+                             <RadioButton fx:id="Risposta3" mnemonicParsing="false" text="RadioButton"/>
+                         </children>
+                         <padding>
+                             <Insets left="200.0"/>
+                         </padding>
+                     </StackPane>
+                     <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+                         <children>
+                             <RadioButton fx:id="Risposta4" mnemonicParsing="false" text="RadioButton"/>
+                         </children>
+                         <padding>
+                             <Insets left="200.0"/>
+                         </padding>
+                     </StackPane>
+                 </children>
+             </VBox>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
