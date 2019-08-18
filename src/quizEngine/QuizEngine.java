@@ -101,9 +101,9 @@ public class QuizEngine extends BaseController{
         if (nDomandaPane.getChildren().size() != 0)
             nDomandaPane.getChildren().remove(0);
 
-        tmp = new Text("DOMANDA  " + this.actualQuestion);
+        tmp = new Text(getParam().toUpperCase() + " QUIZ - " + this.actualQuestion + "° Domanda");
         tmp.setTextAlignment(TextAlignment.CENTER);
-        tmp.setFont(Font.font(50));
+        tmp.setFont(Font.font(40));
         tmp.setFill(Color.WHITE);
         nDomandaPane.getChildren().add(tmp);
 //------------------------------------------------------------------
@@ -118,6 +118,7 @@ public class QuizEngine extends BaseController{
         tmp = new Text(actDomanda.get("Domanda").toString());
         tmp.setTextAlignment(TextAlignment.CENTER);
         tmp.setFont(Font.font(null,FontPosture.ITALIC,35));
+        tmp.setFill(Color.WHITE);
         domandaPane.getChildren().add(tmp);
 //------------------------------------------------------------------
 
