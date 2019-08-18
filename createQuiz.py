@@ -1,4 +1,5 @@
 import json
+from numpy.random import permutation
 
 topic = input("Inserisci il nome dell'argomento (es. HeapSort): ")
 out = open(topic+"Quiz.json","w")
@@ -11,13 +12,13 @@ def createQuestionObject():
 
     questionsList = []
 
+    nrisp = 4
 
     while not done :
         questionAndAnswers = []
         domanda = input("Inserisci la domanda : ")
         questionAndAnswers.append(domanda)
 
-        nrisp = int(input("Quante risposte vuoi inserire? -> "))
         questionAndAnswers.append(nrisp)
 
         correct = input("Inserisci la risposta corretta : ")
@@ -55,15 +56,20 @@ def jsonify(obj) :
         jsoned += '\t\t\t\t\t' + '"Risposte" :\n'
         jsoned += '\t\t\t\t\t\t\t[\n'
 
-        for idx in range(el[1]) :
+        nIter = 1
+        indexCorrectAnswer = 0
+        for idx in permutation(el[1]) :
+            if idx == 0 :
+                indexCorrectAnswer = nIter
             tmp = el[2+idx]
             jsoned += '\t\t\t\t\t\t\t\t' + '"' + tmp + '"'
-            if idx != el[1]-1 :
+            if nIter != 4 :
                 jsoned += ','
             jsoned += '\n'
+            nIter += 1
 
         jsoned += '\t\t\t\t\t\t\t' + '] ,\n'
-        jsoned += '"RispostaCorretta" : "1"\n'
+        jsoned += '"RispostaCorretta" : "' + str(indexCorrectAnswer) +'"\n'
 
         jsoned += '\t\t\t\t\t' + '}'
         if index != len(obj)-1 :
@@ -77,6 +83,7 @@ def jsonify(obj) :
 
     jsoned += "\n}"
 
+    print("jsoned = " + jsoned)
 
     d = json.loads(jsoned)
     jsoned = json.dumps(d, indent=4)
@@ -85,6 +92,8 @@ def jsonify(obj) :
 
 def main():
     qList = createQuestionObject()
+
+    print(qList)
 
     toWrite = jsonify(qList)
 

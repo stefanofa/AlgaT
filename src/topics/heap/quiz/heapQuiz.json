@@ -3,23 +3,26 @@
     "nDomande": "2",
     "Domande": [
         {
-            "Domanda": "DOMANDA1",
-            "nRisposte": "3",
+            "Domanda": "Come si fa?",
+            "nRisposte": "4",
             "Risposte": [
-                "vera",
-                "falsa",
-                "spazzatura"
+                "Bene",
+                "Male3",
+                "Male2",
+                "Male1"
             ],
             "RispostaCorretta": "1"
         },
         {
-            "Domanda": "DOMANDA2",
-            "nRisposte": "2",
+            "Domanda": "Quanto tempo ci vuole per finire questo progetto?",
+            "nRisposte": "4",
             "Risposte": [
-                "vera",
-                "falsa"
+                "Sessanta Settanta",
+                "Un eone",
+                "42",
+                "Poco"
             ],
-            "RispostaCorretta": "1"
+            "RispostaCorretta": "2"
         }
     ]
 }
