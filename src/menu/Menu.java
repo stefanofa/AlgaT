@@ -43,5 +43,9 @@ public class Menu extends BaseController {
         Platform.exit();
     }
 
+    @FXML protected void openPlayground() {
+        switchSceneFromFxmlPath("../playground/playground.fxml");
+    }
+
 
 }
