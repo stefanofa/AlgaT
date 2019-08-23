@@ -1,9 +1,7 @@
-package graphic.parents;
+package interactiveDataStructures.array;
 
-import graphic.array.GraphicArrayItem;
-import graphic.cells.BoxCell;
+import interactiveDataStructures.cells.SquareCell;
 import javafx.animation.*;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -11,13 +9,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-import java.util.Collections;
 import java.util.List;
 
-public class RowArray extends HBox {
+public class ArrayContainer extends HBox {
 
-    public void add(GraphicArrayItem el) {
-        BoxCell cell = el.getCell();
+    public void add(ArrayItem el) {
+        SquareCell cell = (SquareCell) el.getCell();
         FadeTransition ft = new FadeTransition(Duration.millis(1000), cell);
         ft.setFromValue(0.0);
         ft.setToValue(1.0);
@@ -26,7 +23,7 @@ public class RowArray extends HBox {
         ft.play();
     }
 
-    public void add(int index, GraphicArrayItem el) {
+    public void add(int index, ArrayItem el) {
         List<Node> items = this.getChildren();
         Node toAdd = el.getCell();
 
@@ -99,11 +96,11 @@ public class RowArray extends HBox {
         Node toSwap1 = items.get(index1);
         Node toSwap2 = items.get(index2);
 
-        BoxCell cell1 = (BoxCell) toSwap1;
-        BoxCell cell2 = (BoxCell) toSwap2;
+        SquareCell cell1 = (SquareCell) toSwap1;
+        SquareCell cell2 = (SquareCell) toSwap2;
 
-        FillTransition ft1 = cell1.getFillTransition(Color.YELLOW, false);
-        FillTransition ft2 = cell2.getFillTransition(Color.YELLOW, false);
+        FillTransition ft1 = cell1.temporaryColorChange(Color.YELLOW);
+        FillTransition ft2 = cell2.temporaryColorChange(Color.YELLOW);
         ParallelTransition parHighlight = new ParallelTransition(ft1, ft2);
 
         TranslateTransition tt1 = new TranslateTransition(Duration.millis(500), toSwap1);
@@ -112,8 +109,8 @@ public class RowArray extends HBox {
         tt2.setByX(-80f * (index2 - index1));
         ParallelTransition parTranslate = new ParallelTransition(tt1, tt2);
 
-        FillTransition rt1 = cell1.getFillTransition(Color.YELLOW, true);
-        FillTransition rt2 = cell2.getFillTransition(Color.YELLOW, true);
+        FillTransition rt1 = cell1.revertColorChange();
+        FillTransition rt2 = cell2.revertColorChange();
         ParallelTransition resetHighlight = new ParallelTransition(rt1, rt2);
 
         SequentialTransition seqT = new SequentialTransition(parHighlight, parTranslate, resetHighlight);

@@ -1,4 +1,4 @@
-package graphic.array;
+package interactiveDataStructures;
 
 public enum Status {
     DEFAULT,

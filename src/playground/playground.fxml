@@ -7,7 +7,7 @@
 
 <VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.Playground">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="29.0" prefWidth="1366.0">
          <children>
             <TextField fx:id="input" prefHeight="26.0" prefWidth="138.0" />
             <Button fx:id="addButton" mnemonicParsing="false" onAction="#addElement" text="Add" />
@@ -16,6 +16,10 @@
             <TextField fx:id="index1" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="138.0" />
             <TextField fx:id="index2" layoutX="264.0" layoutY="10.0" prefHeight="26.0" prefWidth="138.0" />
             <Button fx:id="swapButton" mnemonicParsing="false" onAction="#swap" text="Swap" />
+            <Button fx:id="treeButton" layoutX="607.0" layoutY="10.0" mnemonicParsing="false" onAction="#tree" text="Tree" />
+            <Button fx:id="leftButton" layoutX="661.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertLeft" text="Left" />
+            <Button fx:id="rightButton" layoutX="709.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertRight" text="Right" />
+            <Button fx:id="deleteButton" layoutX="752.0" layoutY="10.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
          </children>
       </HBox>
    </children>

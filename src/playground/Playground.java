@@ -1,7 +1,8 @@
 package playground;
 
 import baseController.BaseController;
-import graphic.array.GraphicArray;
+import interactiveDataStructures.array.InteractiveArray;
+import interactiveDataStructures.trees.InteractiveBinaryTree;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -16,31 +17,62 @@ public class Playground extends BaseController {
     @FXML TextField index1;
     @FXML TextField index2;
     @FXML Button swapButton;
+    @FXML Button treeButton;
+    @FXML Button leftButton;
+    @FXML Button rightButton;
+    @FXML Button deleteButton;
 
     private Integer count = 0;
 
-    GraphicArray ga = new GraphicArray();
+    InteractiveArray ia = new InteractiveArray();
+    InteractiveBinaryTree ibt = new InteractiveBinaryTree();
 
     @FXML private void initialize() {
-        vBox.getChildren().add(ga);
+        vBox.getChildren().addAll(ia, ibt);
     }
 
     @FXML private void addElement() {
-        ga.insertAt(Integer.parseInt(input.getText()), count);
+        if (input.getText().equals(""))
+            ia.push(count);
+        else
+            ia.insertAt(Integer.parseInt(input.getText()), count);
         count++;
     }
 
     @FXML private void removeElement() {
-        ga.removeAt(Integer.parseInt(input.getText()));
+        ia.removeAt(Integer.parseInt(input.getText()));
     }
 
     @FXML private void archiveElement() {
-        ga.archiveAt(Integer.parseInt(input.getText()));
+        ia.archiveAt(Integer.parseInt(input.getText()));
     }
 
     @FXML private void swap() {
         int i1 = Integer.parseInt(index1.getText());
         int i2 = Integer.parseInt(index2.getText());
-        ga.swap(i1, i2);
+        ia.swap(i1, i2);
     }
+
+    @FXML private void tree() {
+        if (ibt.isEmpty())
+            ibt.insertRoot(count);
+
+        count++;
+    }
+
+    @FXML private void insertLeft() {
+        ibt.insertLeft(count);
+        count++;
+    }
+
+    @FXML private void insertRight() {
+        ibt.insertRight(count);
+        count++;
+    }
+
+    @FXML private void delete() {
+
+    }
+
+
 }
