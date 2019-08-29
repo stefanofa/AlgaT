@@ -4,15 +4,33 @@ import java.util.ArrayList;
 
 public class SnapshotElement extends Object {
 
-
     private ArrayList heapArray;
 
     boolean insertTrans = false;
-    int     insertIndex = 0;
     boolean deleteTrans = false;
-    int     deleteIndex = 0;
     boolean swapTrans   = false;
-    int[]   swapIndexes = {0 , 0};
+    int index;
+    int index2;
+
+    public SnapshotElement(ArrayList<Integer> array) {
+        this.heapArray = array;
+    }
+
+    public SnapshotElement(ArrayList<Integer> array, String op, int index) {
+        this.heapArray = array;
+        this.index = index;
+        if (op == "insert")
+            this.insertTrans = true;
+        else if (op == "delete")
+            this.deleteTrans = true;
+    }
+
+    public SnapshotElement(ArrayList<Integer> array, String op, int index1, int index2) {
+        this.heapArray = array;
+        this.swapTrans = true;
+        this.index = index1;
+        this.index2 = index2;
+    }
 
     SnapshotElement(int length) {
         this.heapArray = new ArrayList(length);
@@ -30,14 +48,6 @@ public class SnapshotElement extends Object {
         return this.insertTrans;
     }
 
-    public void setInsertIndex(int index) {
-        this.insertIndex = index;
-    }
-
-    public int getInsertIndex() {
-        return this.insertIndex;
-    }
-
     public void setDeleteTrans() {
         this.deleteTrans = true;
     }
@@ -46,28 +56,11 @@ public class SnapshotElement extends Object {
         return this.deleteTrans;
     }
 
-    public void setDeleteIndex(int index) {
-        this.deleteIndex = index;
-    }
-
-    public int getDeleteIndex() {
-        return this.deleteIndex;
-    }
-
     public void setSwapTrans() {
         this.swapTrans = true;
     }
 
     public boolean isSwapTrans() {
         return this.swapTrans;
-    }
-
-    public void setSwapIndexes(int a, int b) {
-        this.swapIndexes[0] = a;
-        this.swapIndexes[1] = b;
-    }
-
-    public int[] getSwapIndexes() {
-        return this.swapIndexes;
     }
 }

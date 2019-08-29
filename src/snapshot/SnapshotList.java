@@ -5,11 +5,13 @@ import java.util.ArrayList;
 
 public class SnapshotList {
 
-    private ArrayList <SnapshotElement> list;
+    private ArrayList <SnapshotElement> list = new ArrayList<SnapshotElement>();;
     private int iter = 0;
 
-    SnapshotList() {
-        this.list = new ArrayList<SnapshotElement>();
+
+    public SnapshotList() { }
+    public SnapshotList(ArrayList<Integer> start) {
+        this.list.add(new SnapshotElement(start));
     }
 
     public void addElement(SnapshotElement el) {

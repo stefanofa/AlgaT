@@ -9,6 +9,7 @@ import java.util.Queue;
 public class BinaryTree {
     private TreeItem root = null;
     private Integer height = 0;
+    private Integer size = 0;
     private TreeItem selected = null;
 
     public BinaryTree() { }
@@ -33,14 +34,21 @@ public class BinaryTree {
         return root == null;
     }
 
+    public int size() {
+        return size;
+    }
+
     public void insertRoot(TreeItem t) {
-        if (root == null)
+        if (root == null) {
             root = t;
+            size = 1;
+        }
     }
 
     public void insertLeft(TreeItem t, TreeItem l) {
         if (t.getLeftChild() == null) {
             t.insertLeft(l);
+            size++;
             if (l.height() > height)
                 height = l.height();
         }
@@ -49,6 +57,7 @@ public class BinaryTree {
     public void insertRight(TreeItem t, TreeItem r) {
         if (t.getRightChild() == null) {
             t.insertRight(r);
+            size++;
             if (r.height() > height)
                 height = r.height();
         }
