@@ -1,12 +1,12 @@
-package snapshot;
+package interactiveDataStructures.snapshot;
 
 
 import java.util.ArrayList;
 
 public class SnapshotList {
 
-    private ArrayList <SnapshotElement> list = new ArrayList<SnapshotElement>();;
-    private int iter = 0;
+    private ArrayList <SnapshotElement> list = new ArrayList<SnapshotElement>();
+    private int index = 0;
 
 
     public SnapshotList() { }
@@ -20,23 +20,23 @@ public class SnapshotList {
 
 
     private SnapshotElement getActualElement() {
-        return list.get(iter);
+        return list.get(index);
     }
 
     public SnapshotElement getFirst() {
-        iter = 0;
+        index = 0;
         return getActualElement();
     }
 
     public SnapshotElement getNextElement() {
-        if (iter < list.size()-1)
-            iter ++;
+        if (index < list.size()-1)
+            index ++;
         return getActualElement();
     }
 
     public SnapshotElement getPrevElement() {
-        if(iter > 0)
-            iter --;
+        if(index > 0)
+            index --;
         return getActualElement();
     }
 

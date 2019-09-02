@@ -25,6 +25,10 @@ public class TreeItem extends InteractiveItem<Integer> {
         return parent;
     }
 
+    public void setParent(TreeItem parent) {
+        this.parent = parent;
+    }
+
     public TreeItem getLeftChild() {
         return leftChild;
     }
@@ -34,25 +38,31 @@ public class TreeItem extends InteractiveItem<Integer> {
     }
 
     public void deleteLeft() {
-        leftChild.deleteLeft();
-        leftChild.deleteRight();
-        leftChild = null;
+        if (leftChild != null) {
+            leftChild.deleteLeft();
+            leftChild.deleteRight();
+            leftChild = null;
+        }
     }
 
     public void deleteRight() {
-        rightChild.deleteLeft();
-        rightChild.deleteRight();
-        rightChild = null;
+        if (rightChild != null) {
+            rightChild.deleteLeft();
+            rightChild.deleteRight();
+            rightChild = null;
+        }
     }
 
     public void insertLeft(TreeItem t) {
         leftChild = t;
-        t.parent = this;
+        if (t != null)
+            t.parent = this;
     }
 
     public void insertRight(TreeItem t) {
         rightChild = t;
-        t.parent = this;
+        if (t != null)
+            t.parent = this;
     }
 
     public boolean isRoot() {

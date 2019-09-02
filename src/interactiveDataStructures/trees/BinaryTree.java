@@ -82,6 +82,25 @@ public class BinaryTree {
         return list;
     }
 
+    public TreeItem findOne(Integer el) {
+        TreeItem item = null;
+        Queue<TreeItem> q = new LinkedList<TreeItem>();
+        q.add(root);
+
+        while (!q.isEmpty() && item == null) {
+            TreeItem t = q.remove();
+            if (t.getLeftChild() != null)
+                q.add(t.getLeftChild());
+            if (t.getRightChild() != null)
+                q.add(t.getRightChild());
+
+            if (t.getContent() == el)
+                item = t;
+        }
+
+        return item;
+    }
+
     public void removeLeaf(TreeItem t) {
         if (t.isLeaf()) {
             TreeItem p = t.getParent();
@@ -105,7 +124,8 @@ public class BinaryTree {
             else {
                 p1.insertRight(t2);
             }
-        }
+        } else
+            setRoot(t2);
 
         if (p2 != null) {
             if (p2.getLeftChild() == t2) {
@@ -114,7 +134,8 @@ public class BinaryTree {
             else {
                 p2.insertRight(t1);
             }
-        }
+        } else
+            setRoot(t1);
 
         t = t1.getLeftChild();
         t1.insertLeft(t2.getLeftChild());
@@ -134,5 +155,10 @@ public class BinaryTree {
             return 0;
         else
             return 1 + Math.max(getMaxHeight(t.getLeftChild()), getMaxHeight(t.getRightChild()));
+    }
+
+    private void setRoot(TreeItem t) {
+        root = t;
+        t.setParent(null);
     }
 }

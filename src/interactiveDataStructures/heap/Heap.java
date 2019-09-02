@@ -1,7 +1,5 @@
 package interactiveDataStructures.heap;
 
-import snapshot.SnapshotList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 

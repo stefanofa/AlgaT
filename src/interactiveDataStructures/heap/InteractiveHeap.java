@@ -1,10 +1,8 @@
 package interactiveDataStructures.heap;
 
-import interactiveDataStructures.array.InteractiveArray;
-import interactiveDataStructures.trees.InteractiveBinaryTree;
 import javafx.scene.Parent;
-import snapshot.SnapshotElement;
-import snapshot.SnapshotList;
+import interactiveDataStructures.snapshot.SnapshotElement;
+import interactiveDataStructures.snapshot.SnapshotList;
 
 import java.util.ArrayList;
 import java.util.Collections;

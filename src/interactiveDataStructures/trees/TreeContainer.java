@@ -160,4 +160,44 @@ public class TreeContainer extends Pane {
         insert(tree, t, r, 1);
     }
 
+    public void swap(TreeItem t1, TreeItem t2) {
+        CircleCell c1 = (CircleCell) t1.getCell();
+        CircleCell c2 = (CircleCell) t2.getCell();
+
+        double x1 = c1.getXPosition();
+        double x2 = c2.getXPosition();
+        double y1 = c1.getYPosition();
+        double y2 = c2.getYPosition();
+
+        double deltaX = x2 - x1;
+        double deltaY = y2 - y1;
+
+        TranslateTransition tt1 = new TranslateTransition(Duration.seconds(1), c1);
+        tt1.setByX(deltaX);
+        tt1.setByY(deltaY);
+
+        TranslateTransition tt2 = new TranslateTransition(Duration.seconds(1), c2);
+        tt2.setByX(-deltaX);
+        tt2.setByY(-deltaY);
+
+        FillTransition ft1 = c1.temporaryColorChange(Color.YELLOW);
+        FillTransition ft2 = c2.temporaryColorChange(Color.YELLOW);
+        FillTransition rt1 = c1.revertColorChange();
+        FillTransition rt2 = c2.revertColorChange();
+
+        ParallelTransition highlight = new ParallelTransition(ft1, ft2);
+        ParallelTransition pt = new ParallelTransition(tt1, tt2);
+        ParallelTransition unhighlight = new ParallelTransition(rt1, rt2);
+
+        SequentialTransition st = new SequentialTransition(highlight, pt, unhighlight);
+        st.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                c1.toFront();
+                c2.toFront();
+            }
+        });
+        st.play();
+    }
+
 }

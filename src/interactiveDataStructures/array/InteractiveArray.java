@@ -67,4 +67,9 @@ public class InteractiveArray extends Parent {
     public void archiveAt(int index) {
         list.get(index).archive();
     }
+
+    public void load(ArrayList<Integer> a) {
+        for (Integer x : a)
+            push(x);
+    }
 }

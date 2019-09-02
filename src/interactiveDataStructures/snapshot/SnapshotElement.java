@@ -1,4 +1,4 @@
-package snapshot;
+package interactiveDataStructures.snapshot;
 
 import java.util.ArrayList;
 

@@ -3,6 +3,7 @@ package playground;
 import baseController.BaseController;
 import interactiveDataStructures.array.InteractiveArray;
 import interactiveDataStructures.trees.InteractiveBinaryTree;
+import interactiveDataStructures.trees.TreeItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -50,7 +51,8 @@ public class Playground extends BaseController {
     @FXML private void swap() {
         int i1 = Integer.parseInt(index1.getText());
         int i2 = Integer.parseInt(index2.getText());
-        ia.swap(i1, i2);
+        System.out.println(i1 + " " + i2);
+        ibt.swapElements(i1, i2);
     }
 
     @FXML private void tree() {
