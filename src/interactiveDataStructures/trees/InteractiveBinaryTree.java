@@ -45,6 +45,17 @@ public class InteractiveBinaryTree extends Parent {
         }
     }
 
+    public void insert(Integer el) {
+        TreeItem t = new TreeItem(el);
+        tree.insert(t);
+        TreeItem p = t.getParent();
+        if (p.getLeftChild() == t)
+            container.insertLeft(tree, p, t);
+        else
+            container.insertRight(tree, p, t);
+    }
+
+    /*
     public void insertLeft(Integer el) {
         TreeItem cur = tree.getSelected();
         if (cur != null && cur.getLeftChild() == null) {
@@ -82,8 +93,15 @@ public class InteractiveBinaryTree extends Parent {
             tree.insertRight(cur, r);
         }
     }
-
+    */
     public void swap(TreeItem t1, TreeItem t2) {
+        tree.swap(t1, t2);
+        container.swap(t1, t2);
+    }
+
+    public void swap(int i1, int i2) {
+        TreeItem t1 = tree.getByIndex(i1);
+        TreeItem t2 = tree.getByIndex(i2);
         tree.swap(t1, t2);
         container.swap(t1, t2);
     }
@@ -95,30 +113,11 @@ public class InteractiveBinaryTree extends Parent {
     }
 
     public void load(ArrayList<Integer> a) {
-        int index = 0;
-        if (!a.isEmpty()) {
-            insertRoot(a.get(index));
-            index++;
-            TreeItem t = tree.getRoot();
-            Queue<TreeItem> q = new LinkedList<TreeItem>();
-            q.add(t);
+        tree.loadHeap(a);
+        container.load(tree);
+    }
 
-            while (index < a.size()) {
-                t = q.remove();
-                tree.select(t);
-
-                TreeItem l = new TreeItem(a.get(index));
-                index++;
-                insertLeft(l);
-                q.add(l);
-
-                if (index < a.size()) {
-                    TreeItem r = new TreeItem(a.get(index));
-                    index++;
-                    insertRight(r);
-                    q.add(r);
-                }
-            }
-        }
+    public void archive() {
+        tree.archive();
     }
 }

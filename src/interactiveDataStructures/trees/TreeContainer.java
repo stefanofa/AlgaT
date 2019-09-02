@@ -1,5 +1,6 @@
 package interactiveDataStructures.trees;
 
+import interactiveDataStructures.cells.Cell;
 import interactiveDataStructures.cells.CircleCell;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -198,6 +200,58 @@ public class TreeContainer extends Pane {
             }
         });
         st.play();
+    }
+
+    public void load(BinaryTree tree) {
+        int n = tree.size();
+        int height = (int) (Math.log(n) / Math.log(2));
+        System.out.println(n + " " + height);
+        int level = 0;
+        TreeItem t = tree.getRoot();
+        t.tempLevel = 0;
+        Queue<TreeItem> q = new LinkedList<TreeItem>();
+        q.add(t);
+        int j = -1;
+
+        while (!q.isEmpty()) {
+            t = q.remove();
+
+            if (t.tempLevel > level) {
+                level++;
+                j = 0;
+            } else
+                j++;
+
+            Cell c = t.getCell();
+            t.tempX = Math.pow(2, height - level) * (50 + 100 * j);
+            c.setLayoutX(t.tempX);
+            c.setLayoutY(100 * level);
+            this.getChildren().add(c);
+
+            TreeItem p = t.getParent();
+            if (p != null) {
+                Line line = new Line();
+                line.setStartX(p.tempX + 40);
+                line.setStartY((level - 1) * 100 + 40);
+                line.setEndX(t.tempX + 40);
+                line.setEndY(level * 100 + 40);
+                this.getChildren().add(line);
+                line.toBack();
+                p.getCell().toFront();
+                t.getCell().toFront();
+            }
+
+            TreeItem l = t.getLeftChild();
+            TreeItem r = t.getRightChild();
+            if (l != null) {
+                l.tempLevel = level + 1;
+                q.add(l);
+            }
+            if (r != null) {
+                r.tempLevel = level + 1;
+                q.add(r);
+            }
+        }
     }
 
 }

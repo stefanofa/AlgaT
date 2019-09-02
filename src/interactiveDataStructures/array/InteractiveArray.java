@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class InteractiveArray extends Parent {
-    List<ArrayItem> list = new ArrayList<ArrayItem>();
+    ArrayList<ArrayItem> list = new ArrayList<ArrayItem>();
     ArrayContainer container = new ArrayContainer();
 
     public InteractiveArray() {
@@ -59,8 +59,8 @@ public class InteractiveArray extends Parent {
 
     public void swap(int index1, int index2) {
         if (index1 != index2 && index1 >= 0 && index2 >= 0 && index1 < list.size() && index2 < list.size()) {
+            container.swap(list.get(index1), list.get(index2));
             Collections.swap(list, index1, index2);
-            container.swap(index1, index2);
         }
     }
 
@@ -70,6 +70,7 @@ public class InteractiveArray extends Parent {
 
     public void load(ArrayList<Integer> a) {
         for (Integer x : a)
-            push(x);
+            list.add(new ArrayItem(x));
+        container.addAll(list);
     }
 }

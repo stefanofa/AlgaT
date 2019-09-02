@@ -79,8 +79,8 @@ public class InteractiveHeap extends Parent {
     }
 
     public void load(ArrayList<Integer> a) {
-        if (history == null)
-            heap = a;
+        heap = a;
+        history = new SnapshotList(a);
     }
 
     public void heapBuild() {
@@ -99,15 +99,15 @@ public class InteractiveHeap extends Parent {
     }
 
     private static int p(int i) {
-        return i/2;
+        return (i + 1) / 2 - 1;
     }
 
     private static int l(int i) {
-        return i * 2;
+        return (i + 1) * 2 - 1;
     }
 
     private static int r(int i) {
-        return i * 2 + 1;
+        return (i + 1) * 2;
     }
 
     private void addSnapshot(String op, int index) {

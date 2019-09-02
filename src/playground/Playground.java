@@ -2,6 +2,10 @@ package playground;
 
 import baseController.BaseController;
 import interactiveDataStructures.array.InteractiveArray;
+import interactiveDataStructures.heap.InteractiveHeap;
+import interactiveDataStructures.snapshot.GraphicEngine;
+import interactiveDataStructures.snapshot.SnapshotElement;
+import interactiveDataStructures.snapshot.SnapshotList;
 import interactiveDataStructures.trees.InteractiveBinaryTree;
 import interactiveDataStructures.trees.TreeItem;
 import javafx.fxml.FXML;
@@ -9,27 +13,34 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Playground extends BaseController {
     @FXML VBox vBox;
-    @FXML Button addButton;
-    @FXML Button removeButton;
-    @FXML Button archiveButton;
     @FXML TextField input;
     @FXML TextField index1;
     @FXML TextField index2;
-    @FXML Button swapButton;
-    @FXML Button treeButton;
-    @FXML Button leftButton;
-    @FXML Button rightButton;
-    @FXML Button deleteButton;
 
     private Integer count = 0;
 
     InteractiveArray ia = new InteractiveArray();
     InteractiveBinaryTree ibt = new InteractiveBinaryTree();
+    GraphicEngine ge = new GraphicEngine();
+    InteractiveHeap h = new InteractiveHeap();
 
     @FXML private void initialize() {
-        vBox.getChildren().addAll(ia, ibt);
+        vBox.getChildren().addAll(ge);
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        Random random = new Random();
+        int n = 15;
+        for (int i = 0; i < n; i++)
+            a.add(random.nextInt(n * 3 + 1));
+        h.startRecording();
+        h.load(a);
+        h.heapBuild();
+        SnapshotList history = h.stopRecordingAndGetHistory();
+        ge.load(history);
     }
 
     @FXML private void addElement() {
@@ -75,6 +86,15 @@ public class Playground extends BaseController {
     @FXML private void delete() {
 
     }
+
+    @FXML private void prev() {
+        ge.prev();
+    }
+
+    @FXML private void next() {
+        ge.next();
+    }
+
 
 
 }

@@ -1,8 +1,11 @@
 package interactiveDataStructures.trees;
 
+import interactiveDataStructures.Status;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,6 +14,7 @@ public class BinaryTree {
     private Integer height = 0;
     private Integer size = 0;
     private TreeItem selected = null;
+    private ArrayList<TreeItem> heapArray = null;
 
     public BinaryTree() { }
 
@@ -42,9 +46,24 @@ public class BinaryTree {
         if (root == null) {
             root = t;
             size = 1;
+            heapArray = new ArrayList<TreeItem>();
+            heapArray.add(t);
         }
     }
 
+    public void insert(TreeItem t) {
+        int lastParentIndex = heapArray.size() / 2 - 1;
+        TreeItem p = heapArray.get(lastParentIndex);
+        if (p.getRightChild() == null)
+            p.insertRight(t);
+        else {
+            p = heapArray.get(lastParentIndex + 1);
+            p.insertLeft(t);
+        }
+        heapArray.add(t);
+    }
+
+    /*
     public void insertLeft(TreeItem t, TreeItem l) {
         if (t.getLeftChild() == null) {
             t.insertLeft(l);
@@ -62,6 +81,7 @@ public class BinaryTree {
                 height = r.height();
         }
     }
+    */
 
     public LinkedList<TreeItem> find(Integer el) {
         LinkedList<TreeItem> list = new LinkedList<TreeItem>();
@@ -144,10 +164,53 @@ public class BinaryTree {
         t = t1.getRightChild();
         t1.insertRight(t2.getRightChild());
         t2.insertRight(t);
+
+        if (heapArray != null)
+            Collections.swap(heapArray, heapArray.indexOf(t1), heapArray.indexOf(t2));
     }
 
     public void unhighlightAll() {
         root.unhighlightAll();
+    }
+
+    public void archive() {
+        selected.setStatus(Status.ARCHIVED);
+    }
+
+    public void loadHeap(ArrayList<Integer> a) {
+        this.heapArray = new ArrayList<TreeItem>();
+        if (!a.isEmpty()) {
+            int index = 0;
+            Queue<TreeItem> q = new LinkedList<TreeItem>();
+            TreeItem t = new TreeItem(a.get(index));
+            heapArray.add(t);
+            insertRoot(t);
+            index++;
+            q.add(root);
+
+            while (index < a.size()) {
+                t = q.remove();
+
+                TreeItem l = new TreeItem(a.get(index));
+                t.insertLeft(l);
+                heapArray.add(l);
+                index++;
+                q.add(l);
+
+                if (index < a.size()) {
+                    TreeItem r = new TreeItem(a.get(index));
+                    t.insertRight(r);
+                    heapArray.add(r);
+                    index++;
+                    q.add(r);
+                }
+            }
+        }
+        size = a.size();
+    }
+
+    public TreeItem getByIndex(int index) {
+        return heapArray.get(index);
     }
 
     private Integer getMaxHeight(TreeItem t) {

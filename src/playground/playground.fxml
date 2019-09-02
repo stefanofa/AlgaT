@@ -18,6 +18,8 @@
             <Button fx:id="leftButton" layoutX="661.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertLeft" text="Left" />
             <Button fx:id="rightButton" layoutX="709.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertRight" text="Right" />
             <Button fx:id="deleteButton" layoutX="752.0" layoutY="10.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+            <Button fx:id="prevButton" layoutX="800.0" layoutY="10.0" mnemonicParsing="false" onAction="#prev" text="Prev" />
+            <Button fx:id="nextButton" layoutX="850.0" layoutY="10.0" mnemonicParsing="false" onAction="#next" text="Next" />
          </children>
       </HBox>
    </children>

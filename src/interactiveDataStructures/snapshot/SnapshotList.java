@@ -7,7 +7,7 @@ public class SnapshotList {
 
     private ArrayList <SnapshotElement> list = new ArrayList<SnapshotElement>();
     private int index = 0;
-
+    private boolean lastOperationForward = true;
 
     public SnapshotList() { }
     public SnapshotList(ArrayList<Integer> start) {
@@ -18,27 +18,49 @@ public class SnapshotList {
         list.add(el);
     }
 
-
-    private SnapshotElement getActualElement() {
+    private SnapshotElement getCurrentSnapshot() {
         return list.get(index);
     }
 
     public SnapshotElement getFirst() {
         index = 0;
-        return getActualElement();
+        return getCurrentSnapshot();
     }
 
-    public SnapshotElement getNextElement() {
-        if (index < list.size()-1)
-            index ++;
-        return getActualElement();
+    public SnapshotElement next() {
+        if (index < list.size()-1) {
+            if (!lastOperationForward)
+                index--;
+            index++;
+            lastOperationForward = true;
+        }
+        return getCurrentSnapshot();
     }
 
-    public SnapshotElement getPrevElement() {
-        if(index > 0)
-            index --;
-        return getActualElement();
+    public SnapshotElement prev() {
+        if (index > 0) {
+            if (lastOperationForward)
+                index++;
+            index--;
+            lastOperationForward = false;
+        }
+        return getCurrentSnapshot();
     }
 
+    public SnapshotElement getPrev() {
+        return list.get(index - 1);
+    }
+
+    public SnapshotElement getNext() {
+        return list.get(index + 1);
+    }
+
+    public boolean ended() {
+        return index == list.size() - 1;
+    }
+
+    public boolean atStart() {
+        return index == 0;
+    }
 
 }
