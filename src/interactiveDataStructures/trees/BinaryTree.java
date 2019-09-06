@@ -102,6 +102,7 @@ public class BinaryTree {
         return list;
     }
 
+    //BFS
     public TreeItem findOne(Integer el) {
         TreeItem item = null;
         Queue<TreeItem> q = new LinkedList<TreeItem>();

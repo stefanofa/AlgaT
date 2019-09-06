@@ -13,15 +13,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-/*import org.json.simple.JSONArray;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;*/
+import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 
 public class QuizEngine extends BaseController{
 
-    /*@FXML StackPane domandaPane;
+    @FXML StackPane domandaPane;
     @FXML StackPane nDomandaPane;
     @FXML ProgressBar progressBar;
 
@@ -189,7 +189,7 @@ public class QuizEngine extends BaseController{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 }
 

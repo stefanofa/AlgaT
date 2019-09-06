@@ -74,12 +74,12 @@ public class Playground extends BaseController {
     }
 
     @FXML private void insertLeft() {
-        ibt.insertLeft(count);
+        //ibt.insertLeft(count);
         count++;
     }
 
     @FXML private void insertRight() {
-        ibt.insertRight(count);
+        //ibt.insertRight(count);
         count++;
     }
 
