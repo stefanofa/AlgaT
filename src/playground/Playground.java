@@ -24,8 +24,6 @@ public class Playground extends BaseController {
 
     private Integer count = 0;
 
-    InteractiveArray ia = new InteractiveArray();
-    InteractiveBinaryTree ibt = new InteractiveBinaryTree();
     GraphicEngine ge = new GraphicEngine();
     InteractiveHeap h = new InteractiveHeap();
 
@@ -44,31 +42,24 @@ public class Playground extends BaseController {
     }
 
     @FXML private void addElement() {
-        if (input.getText().equals(""))
-            ia.push(count);
-        else
-            ia.insertAt(Integer.parseInt(input.getText()), count);
-        count++;
+
     }
 
     @FXML private void removeElement() {
-        ia.removeAt(Integer.parseInt(input.getText()));
+        //ia.removeAt(Integer.parseInt(input.getText()));
     }
 
     @FXML private void archiveElement() {
-        ia.archiveAt(Integer.parseInt(input.getText()));
+        //ia.archiveAt(Integer.parseInt(input.getText()));
     }
 
     @FXML private void swap() {
         int i1 = Integer.parseInt(index1.getText());
         int i2 = Integer.parseInt(index2.getText());
         System.out.println(i1 + " " + i2);
-        ibt.swapElements(i1, i2);
     }
 
     @FXML private void tree() {
-        if (ibt.isEmpty())
-            ibt.insertRoot(count);
 
         count++;
     }

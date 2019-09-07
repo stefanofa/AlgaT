@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.Menu">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.Menu">
    <content>
       <VBox>
          <children>
@@ -41,15 +46,6 @@
                         <Font size="64.0" />
                      </font>
                   </Text>
-                  <HBox alignment="CENTER" style="-fx-background-color: cyan;" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coda di priorità">
-                           <font>
-                              <Font size="64.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
                   <HBox alignment="CENTER" style="-fx-background-color: orange;" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Heapsort">
@@ -90,26 +86,6 @@
                            </font>
                         </Button>
                         <Button fx:id="heapsortQuiz" mnemonicParsing="false" onAction="#learn" style="-fx-background-radius: 90; -fx-min-width: 200;" text="Quiz">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="6.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="1051.0" layoutY="168.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: cyan;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <children>
-                        <Button fx:id="priorityQueueLesson" mnemonicParsing="false" onAction="#learn" style="-fx-background-radius: 90; -fx-min-width: 200;" text="Lezione">
-                           <VBox.margin>
-                              <Insets bottom="6.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="priorityQueueQuiz" mnemonicParsing="false" onAction="#learn" style="-fx-background-radius: 90; -fx-min-width: 200;" text="Quiz">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
