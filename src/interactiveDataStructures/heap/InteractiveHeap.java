@@ -69,6 +69,18 @@ public class InteractiveHeap extends Parent {
         }
     }
 
+    public void maxHeapRestore(int i, int dim) {
+        int max = i;
+        if (l(i) <= dim && heap.get(l(i)) > heap.get(max))
+            max = l(i);
+        if (r(i) <= dim && heap.get(r(i)) > heap.get(max))
+            max = r(i);
+        if (i != max) {
+            swap(i, max);
+            maxHeapRestore(max,dim);
+        }
+    }
+
     public Integer remove(int i) {
         addSnapshot("delete", i);
         return heap.remove(i);

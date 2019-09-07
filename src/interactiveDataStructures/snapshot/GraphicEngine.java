@@ -25,6 +25,10 @@ public class GraphicEngine extends VBox {
         restart();
     }
 
+    public void enqueueSnapshot(SnapshotElement el) {
+        history.addElement(el);
+    }
+
     public void restart() {
         index = 0;
         ArrayList heap = history.getFirst().getHeapArray();

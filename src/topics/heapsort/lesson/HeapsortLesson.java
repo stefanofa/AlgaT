@@ -26,18 +26,18 @@ public class HeapsortLesson extends BaseController {
             a.add(random.nextInt(n * 3 + 1));
         heap.startRecording();
         heap.load(a);
-        //heapsort();
+        heapsort();
         SnapshotList history = heap.stopRecordingAndGetHistory();
         ge.load(history);
     }
 
-    /*private void heapsort() {
+    private void heapsort() {
         heap.heapBuild();
         for (int i = heap.size()-1; i >=1 ; i--) {
             heap.swap(i,0);
-            heap.maxHeapRestore(i-1);
+            heap.maxHeapRestore(0, i-1);
         }
-    }*/
+    }
 
     @FXML private void next() {
         ge.next();
