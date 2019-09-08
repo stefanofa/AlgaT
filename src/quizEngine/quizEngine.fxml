@@ -8,97 +8,95 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #2A0033;" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizEngine.QuizEngine">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #2A0033;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizEngine.QuizEngine">
    <children>
-       <StackPane fx:id="nDomandaPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #640934;"/>
+       <StackPane fx:id="nDomandaPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #640934;" />
       <VBox prefHeight="470.0" prefWidth="1366.0">
          <children>
-             <StackPane fx:id="domandaPane" prefHeight="132.0" prefWidth="1366.0"/>
+            <HBox>
+               <children>
+                  <StackPane fx:id="showButtonPane" alignment="CENTER_RIGHT" prefHeight="111.0" prefWidth="155.0" />
+                   <StackPane fx:id="domandaPane" alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="1142.0">
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                  </StackPane>
+               </children>
+            </HBox>
              <VBox prefHeight="359.0" prefWidth="1366.0">
                  <children>
                      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                          <children>
-                             <RadioButton fx:id="Risposta1" contentDisplay="RIGHT" mnemonicParsing="false"
-                                          selected="true" styleClass="radio-color" stylesheets="@../css/style.css"
-                                          text="RadioButton" textFill="WHITE">
+                             <RadioButton fx:id="Risposta1" contentDisplay="RIGHT" mnemonicParsing="false" selected="true" styleClass="radio-color" stylesheets="@../css/style.css" text="RadioButton" textFill="WHITE">
                                  <StackPane.margin>
-                                     <Insets/>
+                                     <Insets />
                                  </StackPane.margin>
                              </RadioButton>
                          </children>
                          <padding>
-                             <Insets left="200.0"/>
+                             <Insets left="200.0" />
                          </padding>
                      </StackPane>
                      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                          <children>
-                             <RadioButton fx:id="Risposta2" mnemonicParsing="false" styleClass="radio-color"
-                                          stylesheets="@../css/style.css" text="RadioButton" textFill="WHITE"/>
+                             <RadioButton fx:id="Risposta2" mnemonicParsing="false" styleClass="radio-color" stylesheets="@../css/style.css" text="RadioButton" textFill="WHITE" />
                          </children>
                          <padding>
-                             <Insets left="200.0"/>
+                             <Insets left="200.0" />
                          </padding>
                      </StackPane>
                      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                          <children>
-                             <RadioButton fx:id="Risposta3" mnemonicParsing="false" styleClass="radio-color"
-                                          stylesheets="@../css/style.css" text="RadioButton" textFill="WHITE"/>
+                             <RadioButton fx:id="Risposta3" mnemonicParsing="false" styleClass="radio-color" stylesheets="@../css/style.css" text="RadioButton" textFill="WHITE" />
                          </children>
                          <padding>
-                             <Insets left="200.0"/>
+                             <Insets left="200.0" />
                          </padding>
                      </StackPane>
                      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                          <children>
-                             <RadioButton fx:id="Risposta4" mnemonicParsing="false" styleClass="radio-color"
-                                          stylesheets="@../css/style.css" text="RadioButton" textFill="WHITE">
+                             <RadioButton fx:id="Risposta4" mnemonicParsing="false" styleClass="radio-color" stylesheets="@../css/style.css" text="RadioButton" textFill="WHITE">
                                  <opaqueInsets>
-                                     <Insets/>
+                                     <Insets />
                                  </opaqueInsets>
                              </RadioButton>
                          </children>
                          <padding>
-                             <Insets left="200.0"/>
+                             <Insets left="200.0" />
                          </padding>
                      </StackPane>
                  </children>
              </VBox>
          </children>
       </VBox>
-       <HBox alignment="CENTER" prefHeight="151.0" prefWidth="1366.0"
-             style="-fx-background-color: #2A0033; -fx-border-color: #9643A9; -fx-background-insets: 0;">
+       <HBox alignment="CENTER" prefHeight="151.0" prefWidth="1366.0" style="-fx-background-color: #2A0033; -fx-border-color: #9643A9; -fx-background-insets: 0;">
            <children>
                <StackPane prefWidth="455.0">
                    <children>
-                       <Button mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #CE2010;"
-                               text="ESCI" textFill="WHITE">
+                       <Button mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #CE2010;" text="ESCI" textFill="WHITE">
                            <font>
-                               <Font size="22.0"/>
+                               <Font size="22.0" />
                            </font>
                        </Button>
                    </children>
                </StackPane>
                <StackPane prefWidth="455.0">
                    <children>
-                       <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0"
-                                    style="-fx-border-color: green;">
+                       <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" style="-fx-border-color: green;">
                            <HBox.margin>
-                               <Insets left="350.0"/>
+                               <Insets left="350.0" />
                            </HBox.margin>
                        </ProgressBar>
                    </children>
                </StackPane>
                <StackPane prefWidth="455.0">
                    <children>
-                       <Button mnemonicParsing="false" onAction="#nextQuestion" style="-fx-background-color: #FCBB31;"
-                               text="PROSSIMA DOMANDA" textFill="WHITE">
+                       <Button mnemonicParsing="false" onAction="#nextQuestion" style="-fx-background-color: #FCBB31;" text="PROSSIMA DOMANDA" textFill="WHITE">
                            <HBox.margin>
-                               <Insets left="350.0"/>
+                               <Insets left="350.0" />
                            </HBox.margin>
                            <font>
-                               <Font size="22.0"/>
+                               <Font size="22.0" />
                            </font>
                        </Button>
                    </children>

@@ -11,7 +11,8 @@
                 "Male2",
                 "Male1"
             ],
-            "RispostaCorretta": "1"
+            "RispostaCorretta": "1",
+            "imgName": "heap.jpg"
         },
         {
             "Domanda": "Quanto tempo ci vuole per finire questo progetto?",
@@ -22,7 +23,8 @@
                 "42",
                 "Poco"
             ],
-            "RispostaCorretta": "2"
+            "RispostaCorretta": "2",
+            "imgName": "null"
         }
     ]
 }

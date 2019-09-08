@@ -1,36 +1,46 @@
 package quizEngine;
 
 import baseController.BaseController;
+import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.File;
 import java.io.FileReader;
 
 public class QuizEngine extends BaseController{
 
     @FXML StackPane domandaPane;
     @FXML StackPane nDomandaPane;
+    @FXML StackPane showButtonPane;
     @FXML ProgressBar progressBar;
 
     @FXML
     RadioButton
             Risposta1, Risposta2, Risposta3, Risposta4;
 
+    Button btnShow = new Button("Mostra Immagine");
+
     private JSONObject quiz;
     private JSONArray domande;
+    private JSONObject actDomanda;
     private int nDomande;
     private int actualQuestion;
 
@@ -64,6 +74,14 @@ public class QuizEngine extends BaseController{
         //of actualCheckedAnswer
         toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> uploadCheckedAnswer());
 
+        btnShow.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showImg(actDomanda.get("imgName").toString());
+            }
+        });
+
+        showButtonPane.getChildren().add(btnShow);
 
         nextQuestion();
 
@@ -109,17 +127,30 @@ public class QuizEngine extends BaseController{
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
-//  Set and show the question
+//  Set and show the question,
+//  if there is an Image related to the question -> make the "Show Image" button visible and clickable
 
         if (domandaPane.getChildren().size() != 0)
             domandaPane.getChildren().remove(0);
 
-        JSONObject actDomanda = (JSONObject)domande.get(this.actualQuestion-1);
+        actDomanda = (JSONObject)domande.get(this.actualQuestion-1);
+
         tmp = new Text(actDomanda.get("Domanda").toString());
         tmp.setTextAlignment(TextAlignment.CENTER);
         tmp.setFont(Font.font(null,FontPosture.ITALIC,35));
         tmp.setFill(Color.WHITE);
+
         domandaPane.getChildren().add(tmp);
+
+        //se la domanda attuale non prevede un'immagine esplicativa, nascondo il button per mostrare l'immagine,
+        //altrimenti lo rendo visibile
+        //N.B. "null" è intesa come una stringa che è campo dell'oggetto JSON, non si intende il null pointer,
+        //in tal modo tutte le domande che presentano immagini hanno come valore del campo "imgName" il nome dell'immagine,
+        //mentre le domande che non presentano immagini hanno come valore del campo la stringa "null"
+        if (actDomanda.get("imgName").toString().equals("null") )
+            btnShow.setVisible(false);
+        else
+            btnShow.setVisible(true);
 //------------------------------------------------------------------
 
 //------------------------------------------------------------------
@@ -138,7 +169,6 @@ public class QuizEngine extends BaseController{
     }
 
     @FXML private void nextQuestion() {
-
         if (this.actualCheckedAnswer == this.actualCorrectAnswer) {
             if (this.actualQuestion < this.nDomande) {
                 this.progressBar.setProgress(this.progressBar.getProgress() + (1.0 / this.nDomande) * this.actualQuestion);
@@ -181,6 +211,29 @@ public class QuizEngine extends BaseController{
             e.printStackTrace();
         }
         return null;
+    }
+
+    //to show an Image that is related to an Answer of the quiz and is stored in the topics -> quiz -> pictures folder
+    private void showImg(String imgName) {
+        if (imgName != "null") {
+            try {
+                System.out.println("src/topics/" + getParam() + "/quiz/pictures/" + imgName);
+                File imgfile = new File("src/topics/" + getParam() + "/quiz/pictures/" + imgName);
+                final Stage dialog = new Stage();
+                final ImageView imv = new ImageView();
+                final Image img = new Image(imgfile.toURI().toString());
+                imv.setImage(img);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.initOwner(this.getActualStage());
+                VBox dialogVbox = new VBox(50);
+                dialogVbox.getChildren().add(imv);
+                Scene dialogScene = new Scene(dialogVbox, img.getWidth(), img.getHeight());
+                dialog.setScene(dialogScene);
+                dialog.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML private void goToMenu(ActionEvent event) {

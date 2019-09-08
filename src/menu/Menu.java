@@ -2,17 +2,18 @@ package menu;
 
 import javafx.fxml.FXML;
 import baseController.BaseController;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.application.Platform;
 
 import javafx.event.ActionEvent;
 
+
 public class Menu extends BaseController {
 
     @FXML
     protected void initialize() {
-
-    }
+            }
 
     @FXML private void learn(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();

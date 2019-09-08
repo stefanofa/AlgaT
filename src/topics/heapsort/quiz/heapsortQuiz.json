@@ -1,1 +1,30 @@
-{}
+{
+    "Topic": "heapsort",
+    "nDomande": "2",
+    "Domande": [
+        {
+            "Domanda": "Qual \u00e8 la complessit\u00e0 dell'HeapSort?",
+            "nRisposte": "4",
+            "imgName": "cpx.jpg",
+            "Risposte": [
+                "nlogn",
+                "1",
+                "O(n2)",
+                "NP"
+            ],
+            "RispostaCorretta": "1"
+        },
+        {
+            "Domanda": "Che struttura utilizza l'heapsort?",
+            "nRisposte": "4",
+            "imgName": "null",
+            "Risposte": [
+                "Lista",
+                "HashTable",
+                "Set",
+                "Heap o Coda di priorit\u00e0"
+            ],
+            "RispostaCorretta": "4"
+        }
+    ]
+}
