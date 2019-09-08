@@ -60,7 +60,7 @@ public class HeapLesson extends BaseController {
 
     @FXML
     private void next() {
-        ge.play(1000);
+        ge.switchPlayMode(1000);
     }
 
 }

@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.97" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="topics.heapsort.lesson.HeapsortLesson">
    <children>
       <StackPane prefHeight="91.0" prefWidth="1366.0" style="-fx-background-color: #640934;">
@@ -21,9 +20,19 @@
       <VBox fx:id="vBox" prefHeight="617.0" prefWidth="1366.0" />
       <ToolBar opacity="0.92" prefHeight="60.0" prefWidth="1366.0" style="-fx-border-color: grey;">
         <items>
-          <Button mnemonicParsing="false" onAction="#goToMenu" text="ESCI" />
-            <Button mnemonicParsing="false" onAction="#next" text="NEXT" />
-            <Button mnemonicParsing="false" onAction="#prev" text="PREV" />
+            <Button mnemonicParsing="false" onAction="#prev" style="-fx-background-color: blue;" text="PREV" textFill="WHITE" />
+            <Button fx:id="autoButton" mnemonicParsing="false" onAction="#revertPlayMode" style="-fx-background-color: green; -fx-background-radius: 55;" text="MANUAL" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#next" style="-fx-background-color: blue;" text="NEXT" textFill="WHITE" />
+            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="1092.0">
+               <children>
+                  <Pane prefHeight="46.0" prefWidth="1031.0" />
+                <Button mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: red;" text="ESCI" textFill="WHITE" />
+               </children>
+            </HBox>
         </items>
       </ToolBar>
    </children>

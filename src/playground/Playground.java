@@ -86,6 +86,8 @@ public class Playground extends BaseController {
         ge.next();
     }
 
-    @FXML private void start() { ge.play(); }
+    @FXML private void start() {
+        ge.switchPlayMode();
+    }
 
 }

@@ -15,6 +15,8 @@ public class GraphicEngine extends VBox {
     private InteractiveBinaryTree ibt = new InteractiveBinaryTree();
     private Timer timer = new Timer();
 
+    private boolean autoplay = false;
+
     SnapshotList history = null;
     Integer index = null;
 
@@ -76,11 +78,21 @@ public class GraphicEngine extends VBox {
         }
     }
 
-    public void play() {
-        play(Config.ANIMATION_DEFAULT_MILLIS * 3);
+    public void switchPlayMode() {
+            switchPlayMode(Config.ANIMATION_DEFAULT_MILLIS * 3);
     }
 
-    public void play(int timeout) {
+    public void switchPlayMode(int timeout) {
+        if (autoplay == false)
+            play(timeout);
+        else
+            pause();
+    }
+
+
+    private void play(int timeout) {
+        autoplay = true;
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -91,7 +103,13 @@ public class GraphicEngine extends VBox {
         }, 0, timeout);
     }
 
-    public void pause() {
+    private void pause() {
+        autoplay = false;
         timer.cancel();
     }
+
+    public boolean isAutoPlaying() {
+        return autoplay;
+    }
+
 }

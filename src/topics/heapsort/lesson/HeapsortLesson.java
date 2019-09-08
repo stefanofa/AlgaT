@@ -6,6 +6,7 @@ import interactiveDataStructures.snapshot.GraphicEngine;
 import interactiveDataStructures.snapshot.SnapshotList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Random;
 public class HeapsortLesson extends BaseController {
 
     @FXML VBox vBox;
+    @FXML Button autoButton;
     GraphicEngine ge = new GraphicEngine();
     InteractiveHeap heap = new InteractiveHeap();
 
@@ -38,14 +40,28 @@ public class HeapsortLesson extends BaseController {
             heap.archive(i);
             heap.maxHeapRestore(0, i-1);
         }
+        heap.archive(0);
+        for (int i = 0; i < heap.size(); i++)
+            heap.highlight(i);
     }
 
     @FXML private void next() {
+        if (ge.isAutoPlaying()) revertPlayMode();
         ge.next();
     }
 
     @FXML private void prev() {
+        if (ge.isAutoPlaying()) revertPlayMode();
         ge.prev();
+    }
+
+    @FXML private void revertPlayMode() {
+        if(ge.isAutoPlaying())
+            autoButton.setText("MANUAL");
+
+        else
+            autoButton.setText("AUTO");
+        ge.switchPlayMode();
     }
 
 
