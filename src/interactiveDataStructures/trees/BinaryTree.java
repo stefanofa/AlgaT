@@ -1,8 +1,6 @@
 package interactiveDataStructures.trees;
 
 import interactiveDataStructures.Status;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,15 +1,10 @@
 package playground;
 
 import baseController.BaseController;
-import interactiveDataStructures.array.InteractiveArray;
 import interactiveDataStructures.heap.InteractiveHeap;
 import interactiveDataStructures.snapshot.GraphicEngine;
-import interactiveDataStructures.snapshot.SnapshotElement;
 import interactiveDataStructures.snapshot.SnapshotList;
-import interactiveDataStructures.trees.InteractiveBinaryTree;
-import interactiveDataStructures.trees.TreeItem;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 

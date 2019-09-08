@@ -16,8 +16,8 @@ public class HeapsortLesson extends BaseController {
 
     @FXML VBox vBox;
     @FXML Button autoButton;
-    GraphicEngine ge = new GraphicEngine();
-    InteractiveHeap heap = new InteractiveHeap();
+    private GraphicEngine ge = new GraphicEngine();
+    private InteractiveHeap heap = new InteractiveHeap();
 
     @FXML private void initialize() {
         vBox.getChildren().addAll(ge);

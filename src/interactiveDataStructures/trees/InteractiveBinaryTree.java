@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class InteractiveBinaryTree extends Parent {
     BinaryTree tree = new BinaryTree();

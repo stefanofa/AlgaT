@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class InteractiveArray extends Parent {
     ArrayList<ArrayItem> list = new ArrayList<ArrayItem>();

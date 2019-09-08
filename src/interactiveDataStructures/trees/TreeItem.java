@@ -2,11 +2,6 @@ package interactiveDataStructures.trees;
 
 import interactiveDataStructures.InteractiveItem;
 import interactiveDataStructures.cells.CircleCell;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
-
-import java.util.Observable;
-import java.util.Observer;
 
 public class TreeItem extends InteractiveItem<Integer> {
     private TreeItem parent;

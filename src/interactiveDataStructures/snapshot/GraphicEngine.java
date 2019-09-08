@@ -4,7 +4,6 @@ import baseController.Config;
 import interactiveDataStructures.array.InteractiveArray;
 import interactiveDataStructures.trees.InteractiveBinaryTree;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -17,8 +16,8 @@ public class GraphicEngine extends VBox {
 
     private boolean autoplay = false;
 
-    SnapshotList history = null;
-    Integer index = null;
+    private SnapshotList history = null;
+    private Integer index = null;
 
     public GraphicEngine() {
         this.getChildren().addAll(ia, ibt);
@@ -33,7 +32,7 @@ public class GraphicEngine extends VBox {
         history.addElement(el);
     }
 
-    public void restart() {
+    private void restart() {
         index = 0;
         ArrayList heap = history.getFirst().getHeapArray();
         ia.load(heap);
@@ -83,7 +82,7 @@ public class GraphicEngine extends VBox {
     }
 
     public void switchPlayMode(int timeout) {
-        if (autoplay == false)
+        if (!autoplay)
             play(timeout);
         else
             pause();

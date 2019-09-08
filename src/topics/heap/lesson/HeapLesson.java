@@ -2,12 +2,12 @@ package topics.heap.lesson;
 
 import baseController.BaseController;
 import baseController.Config;
-import interactiveDataStructures.array.InteractiveArray;
 import interactiveDataStructures.heap.InteractiveHeap;
 import interactiveDataStructures.snapshot.GraphicEngine;
-import interactiveDataStructures.trees.InteractiveBinaryTree;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -20,6 +20,7 @@ import java.util.Random;
 
 public class HeapLesson extends BaseController {
     @FXML BorderPane borderPane;
+    @FXML private Button autoButton;
     List<Node> slides = new LinkedList<Node>();
     GraphicEngine ge;
 
@@ -58,9 +59,32 @@ public class HeapLesson extends BaseController {
         return n;
     }
 
-    @FXML
-    private void next() {
-        ge.switchPlayMode(1000);
+    @FXML private void next() {
+        if (ge.isAutoPlaying()) revertPlayMode();
+        ge.next();
+    }
+
+    @FXML private void prev() {
+        if (ge.isAutoPlaying()) revertPlayMode();
+        ge.prev();
+    }
+
+    @FXML private void revertPlayMode() {
+        if(ge.isAutoPlaying())
+            autoButton.setText("MANUAL");
+
+        else
+            autoButton.setText("AUTO");
+        ge.switchPlayMode();
+    }
+
+
+    @FXML private void goToMenu(ActionEvent event) {
+        try {
+            switchSceneFromFxmlPath("../../../menu/menu.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
