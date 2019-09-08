@@ -1,5 +1,6 @@
 package interactiveDataStructures.trees;
 
+import interactiveDataStructures.Status;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
@@ -14,6 +15,10 @@ public class InteractiveBinaryTree extends Parent {
 
     public InteractiveBinaryTree() {
         this.getChildren().add(container);
+    }
+    public InteractiveBinaryTree(ArrayList<Integer> a) {
+        this.getChildren().add(container);
+        load(a);
     }
 
     private void makeClickable(TreeItem t) {
@@ -117,7 +122,23 @@ public class InteractiveBinaryTree extends Parent {
         container.load(tree);
     }
 
-    public void archive() {
-        tree.archive();
+    public void archive(int i) {
+        TreeItem t = tree.getByIndex(i);
+        t.archive();
+    }
+
+    public void unarchive(int i) {
+        TreeItem t = tree.getByIndex(i);
+        t.unarchive();
+    }
+
+    public void highlight(int i) {
+        TreeItem t = tree.getByIndex(i);
+        t.highlight();
+    }
+
+    public void unhighlight(int i) {
+        TreeItem t = tree.getByIndex(i);
+        t.setStatus(Status.DEFAULT);
     }
 }

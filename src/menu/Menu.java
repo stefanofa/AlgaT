@@ -23,6 +23,7 @@ public class Menu extends BaseController {
             topic = id.replace("Lesson", "");
             type = "lesson";
             suffix = "Lesson.fxml";
+            System.out.println("../topics/" + topic + "/" + type + "/" + topic + suffix);
             switchSceneFromFxmlPath("../topics/" + topic + "/" + type + "/" + topic + suffix, topic);
         } else { // Contains "Quiz"
             topic = id.replace("Quiz", "");

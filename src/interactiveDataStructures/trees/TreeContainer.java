@@ -1,5 +1,6 @@
 package interactiveDataStructures.trees;
 
+import baseController.Config;
 import interactiveDataStructures.cells.Cell;
 import interactiveDataStructures.cells.CircleCell;
 import javafx.animation.*;
@@ -19,12 +20,12 @@ import java.util.Queue;
 public class TreeContainer extends Pane {
 
     public TreeContainer() {
-        this.setPrefSize(1366, 768);
+        this.setPrefSize(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
     }
 
     public void insertRoot(TreeItem t) {
         CircleCell c = (CircleCell) t.getCell();
-        FadeTransition ft = new FadeTransition(Duration.seconds(1), c);
+        FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, c);
         ft.setFromValue(0);
         ft.setToValue(1);
 
@@ -73,8 +74,8 @@ public class TreeContainer extends Pane {
                 r.tempLevel = i + 1;
                 q.add(r);
 
-                TranslateTransition tt = new TranslateTransition(Duration.seconds(1), t.getCell());
-                double offset = Math.pow(2, h - i) * (50 + 100 * j);
+                TranslateTransition tt = new TranslateTransition(Config.ANIMATION_DURATION, t.getCell());
+                double offset = Math.pow(2, h - i) * (Config.HALF_CELL_SPACE + Config.CELL_SPACE * j);
                 tt.setByX(offset);
                 t.tempX = t.getCell().getXPosition() + offset;
                 restructure.getChildren().add(tt);
@@ -84,15 +85,15 @@ public class TreeContainer extends Pane {
                 if (p != null) {
                     Line line = new Line();
                     line.setStartX(p.tempX);
-                    line.setStartY((i - 1) * 100 + 40);
+                    line.setStartY((i - 1) * Config.TREE_VERTICAL_OFFSET + Config.HALF_CELL_SIZE);
                     line.setEndX(t.tempX);
-                    line.setEndY(i * 100 + 40);
+                    line.setEndY(i * Config.TREE_VERTICAL_OFFSET + Config.HALF_CELL_SIZE);
                     this.getChildren().add(line);
                     line.toBack();
                     p.getCell().toFront();
                     t.getCell().toFront();
 
-                    FadeTransition ft = new FadeTransition(Duration.seconds(1), line);
+                    FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, line);
                     ft.setFromValue(0);
                     ft.setToValue(1);
                     restructure.getChildren().add(ft);
@@ -123,21 +124,21 @@ public class TreeContainer extends Pane {
                 double x = parent.getXPosition();
                 double y = parent.getYPosition();
                 int i = t.height() + 1;
-                child.setLayoutX(x - 40 + sign * 50 * Math.pow(2, finalH - i));
-                child.setLayoutY(y + 100 - 40);
+                child.setLayoutX(x - Config.HALF_CELL_SIZE + sign * Config.HALF_CELL_SPACE * Math.pow(2, finalH - i));
+                child.setLayoutY(y + Config.TREE_VERTICAL_OFFSET - Config.HALF_CELL_SIZE);
 
-                FadeTransition ft1 = new FadeTransition(Duration.seconds(1), child);
+                FadeTransition ft1 = new FadeTransition(Config.ANIMATION_DURATION, child);
                 ft1.setFromValue(0);
                 ft1.setToValue(1);
 
                 Line line = new Line();
                 line.setStartX(parent.getXPosition());
                 line.setStartY(parent.getYPosition());
-                line.setEndX(child.getXPosition() + 40);
-                line.setEndY(child.getYPosition() + 40);
+                line.setEndX(child.getXPosition() + Config.HALF_CELL_SIZE);
+                line.setEndY(child.getYPosition() + Config.HALF_CELL_SIZE);
                 line.toBack();
 
-                FadeTransition ft2 = new FadeTransition(Duration.seconds(1), line);
+                FadeTransition ft2 = new FadeTransition(Config.ANIMATION_DURATION, line);
                 ft2.setFromValue(0);
                 ft2.setToValue(1);
 
@@ -174,11 +175,11 @@ public class TreeContainer extends Pane {
         double deltaX = x2 - x1;
         double deltaY = y2 - y1;
 
-        TranslateTransition tt1 = new TranslateTransition(Duration.seconds(1), c1);
+        TranslateTransition tt1 = new TranslateTransition(Config.ANIMATION_DURATION, c1);
         tt1.setByX(deltaX);
         tt1.setByY(deltaY);
 
-        TranslateTransition tt2 = new TranslateTransition(Duration.seconds(1), c2);
+        TranslateTransition tt2 = new TranslateTransition(Config.ANIMATION_DURATION, c2);
         tt2.setByX(-deltaX);
         tt2.setByY(-deltaY);
 
@@ -223,18 +224,18 @@ public class TreeContainer extends Pane {
                 j++;
 
             Cell c = t.getCell();
-            t.tempX = Math.pow(2, height - level) * (50 + 100 * j);
+            t.tempX = Math.pow(2, height - level) * (Config.HALF_CELL_SPACE + Config.CELL_SPACE * j);
             c.setLayoutX(t.tempX);
-            c.setLayoutY(100 * level);
+            c.setLayoutY(Config.TREE_VERTICAL_OFFSET * level);
             this.getChildren().add(c);
 
             TreeItem p = t.getParent();
             if (p != null) {
                 Line line = new Line();
-                line.setStartX(p.tempX + 40);
-                line.setStartY((level - 1) * 100 + 40);
-                line.setEndX(t.tempX + 40);
-                line.setEndY(level * 100 + 40);
+                line.setStartX(p.tempX + Config.HALF_CELL_SIZE);
+                line.setStartY((level - 1) * Config.TREE_VERTICAL_OFFSET + Config.HALF_CELL_SIZE);
+                line.setEndX(t.tempX + Config.HALF_CELL_SIZE);
+                line.setEndY(level * Config.TREE_VERTICAL_OFFSET + Config.HALF_CELL_SIZE);
                 this.getChildren().add(line);
                 line.toBack();
                 p.getCell().toFront();
@@ -253,5 +254,4 @@ public class TreeContainer extends Pane {
             }
         }
     }
-
 }

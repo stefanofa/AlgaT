@@ -4,8 +4,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import baseController.BaseController;
+import javafx.util.Duration;
 
 public class Main extends Application {
+    static Duration animationDuration = Duration.millis(1000);
 
     @Override
     public void start(Stage primaryStage) throws Exception{

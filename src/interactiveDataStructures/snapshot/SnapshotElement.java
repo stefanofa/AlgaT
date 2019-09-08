@@ -10,11 +10,18 @@ public class SnapshotElement extends Object {
     boolean deleteTrans  = false;
     boolean swapTrans    = false;
     boolean archiveTrans = false;
+    boolean highlightTrans = false;
     int index;
     int index2;
+    String label = null;
 
     public SnapshotElement(ArrayList<Integer> array) {
         this.heapArray = new ArrayList<Integer>(array);
+    }
+
+    public SnapshotElement(ArrayList<Integer> array, String label) {
+        this.heapArray = new ArrayList<Integer>(array);
+        this.label = label;
     }
 
     public SnapshotElement(ArrayList<Integer> array, String op, int index) {
@@ -26,6 +33,22 @@ public class SnapshotElement extends Object {
             this.deleteTrans = true;
         else if (op == "archive")
             this.archiveTrans = true;
+        else if (op == "highlight")
+            this.highlightTrans = true;
+    }
+
+    public SnapshotElement(ArrayList<Integer> array, String op, int index, String label) {
+        this.heapArray = array;
+        this.index = index;
+        if (op == "insert")
+            this.insertTrans = true;
+        else if (op == "delete")
+            this.deleteTrans = true;
+        else if (op == "archive")
+            this.archiveTrans = true;
+        else if (op == "highlight")
+            this.highlightTrans = true;
+        this.label = label;
     }
 
     public SnapshotElement(ArrayList<Integer> array, String op, int index1, int index2) {
@@ -35,8 +58,12 @@ public class SnapshotElement extends Object {
         this.index2 = index2;
     }
 
-    SnapshotElement(int length) {
-        this.heapArray = new ArrayList(length);
+    public SnapshotElement(ArrayList<Integer> array, String op, int index1, int index2, String label) {
+        this.heapArray = array;
+        this.swapTrans = true;
+        this.index = index1;
+        this.index2 = index2;
+        this.label = label;
     }
 
     public ArrayList getHeapArray() {
@@ -55,5 +82,7 @@ public class SnapshotElement extends Object {
         return this.swapTrans;
     }
     public boolean isArchiveTrans() { return this.archiveTrans; }
+    public boolean isHighlightTrans() { return this.highlightTrans; }
+    public String getLabel() { return this.label; }
 
 }

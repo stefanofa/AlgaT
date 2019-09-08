@@ -34,7 +34,8 @@ public class HeapsortLesson extends BaseController {
     private void heapsort() {
         heap.heapBuild();
         for (int i = heap.size()-1; i >=1 ; i--) {
-            heap.swap(i,0);
+            heap.swap(i, 0);
+            heap.archive(i);
             heap.maxHeapRestore(0, i-1);
         }
     }

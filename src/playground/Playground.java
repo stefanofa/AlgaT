@@ -36,7 +36,7 @@ public class Playground extends BaseController {
             a.add(random.nextInt(n * 3 + 1));
         h.startRecording();
         h.load(a);
-        h.heapBuild();
+        h.heapsort();
         SnapshotList history = h.stopRecordingAndGetHistory();
         ge.load(history);
     }
@@ -86,6 +86,6 @@ public class Playground extends BaseController {
         ge.next();
     }
 
-
+    @FXML private void start() { ge.play(); }
 
 }

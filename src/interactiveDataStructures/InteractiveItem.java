@@ -72,6 +72,11 @@ public class InteractiveItem<T> extends Observable implements IItem<T> {
         setStatus(Status.ARCHIVED);
     }
 
+    @Override
+    public final void unarchive() {
+        setStatus(Status.DEFAULT);
+    }
+
     private static Color getColorForStatus(Status status) {
         if (status == Status.DEFAULT)
             return Color.WHITE;

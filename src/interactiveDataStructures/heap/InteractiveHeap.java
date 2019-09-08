@@ -11,6 +11,11 @@ public class InteractiveHeap extends Parent {
     private SnapshotList history = null;
     private ArrayList<Integer> heap = new ArrayList<Integer>();
 
+    public InteractiveHeap() {}
+    public InteractiveHeap(ArrayList<Integer> a) {
+        load(a);
+    }
+
     public void startRecording() {
         history = new SnapshotList(heap);
     }
@@ -130,6 +135,30 @@ public class InteractiveHeap extends Parent {
     private void addSnapshot(String op, int i1, int i2) {
         if (history != null)
             history.addElement(new SnapshotElement(getSnapshot(), op, i1, i2));
+    }
+
+    public void archive(int i) {
+        if (history != null) {
+            SnapshotElement el = new SnapshotElement(heap, "archive", i);
+            history.addElement(el);
+        }
+    }
+
+    public void heapsort() {
+        heapBuild();
+        for (int i = size() - 1; i >= 1; i--) {
+            swap(i, 0);
+            archive(i);
+            maxHeapRestore(0, i-1);
+        }
+        archive(0);
+    }
+
+    public void highlight(int i) {
+        if (history != null) {
+            SnapshotElement se = new SnapshotElement(heap, "highlight", i);
+            history.addElement(se);
+        }
     }
 
 }

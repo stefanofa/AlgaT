@@ -16,6 +16,11 @@ public class InteractiveArray extends Parent {
         this.getChildren().add(container);
     }
 
+    public InteractiveArray(ArrayList<Integer> a) {
+        this.getChildren().add(container);
+        load(a);
+    }
+
     public void push(int el) {
         ArrayItem item = new ArrayItem(el);
         list.add(item);
@@ -57,6 +62,11 @@ public class InteractiveArray extends Parent {
         item.highlight();
     }
 
+    public void unhighlightAt(int index) {
+        ArrayItem item = list.get(index);
+        item.unhighlight();
+    }
+
     public void swap(int index1, int index2) {
         if (index1 != index2 && index1 >= 0 && index2 >= 0 && index1 < list.size() && index2 < list.size()) {
             container.swap(list.get(index1), list.get(index2));
@@ -66,6 +76,10 @@ public class InteractiveArray extends Parent {
 
     public void archiveAt(int index) {
         list.get(index).archive();
+    }
+
+    public void unarchiveAt(int index) {
+        list.get(index).unarchive();
     }
 
     public void load(ArrayList<Integer> a) {

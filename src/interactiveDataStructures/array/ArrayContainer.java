@@ -1,18 +1,16 @@
 package interactiveDataStructures.array;
 
+import baseController.Config;
 import interactiveDataStructures.cells.Cell;
 import interactiveDataStructures.cells.SquareCell;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ArrayContainer extends Pane {
@@ -21,11 +19,11 @@ public class ArrayContainer extends Pane {
 
     public void add(ArrayItem el) {
         SquareCell cell = (SquareCell) el.getCell();
-        cell.setLayoutX(80 * size);
+        cell.setLayoutX(Config.CELL_SIZE * size);
         size++;
         this.getChildren().add(cell);
 
-        FadeTransition ft = new FadeTransition(Duration.millis(1000), cell);
+        FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, cell);
         ft.setFromValue(0.0);
         ft.setToValue(1.0);
 
@@ -35,18 +33,18 @@ public class ArrayContainer extends Pane {
     public void add(int index, ArrayItem el) {
         List<Node> items = this.getChildren();
         Node toAdd = el.getCell();
-        toAdd.setLayoutX(80 * index);
+        toAdd.setLayoutX(Config.CELL_SIZE * index);
         items.add(toAdd);
         size++;
 
         ParallelTransition parT = new ParallelTransition();
         for (int i = index; i < items.size(); i++) {
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), items.get(i));
-            tt.setByX(80f);
+            TranslateTransition tt = new TranslateTransition(Config.ANIMATION_DURATION, items.get(i));
+            tt.setByX(Config.CELL_SIZE);
             parT.getChildren().add(tt);
         }
 
-        FadeTransition ft = new FadeTransition(Duration.millis(1000), toAdd);
+        FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, toAdd);
         ft.setFromValue(0.0);
         ft.setToValue(1.0);
 
@@ -60,10 +58,10 @@ public class ArrayContainer extends Pane {
         ParallelTransition parT = new ParallelTransition();
         for (ArrayItem item : a) {
             SquareCell cell = (SquareCell) item.getCell();
-            cell.setLayoutX(size * 80);
+            cell.setLayoutX(size * Config.CELL_SIZE);
             size++;
             this.getChildren().add(cell);
-            FadeTransition ft = new FadeTransition(Duration.millis(1000), cell);
+            FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, cell);
             ft.setFromValue(0.0);
             ft.setToValue(1.0);
             parT.getChildren().add(ft);
@@ -75,7 +73,7 @@ public class ArrayContainer extends Pane {
         List<Node> items = this.getChildren();
         Node toRemove = items.get(index);
 
-        FadeTransition ft = new FadeTransition(Duration.millis(1000), toRemove);
+        FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, toRemove);
         ft.setFromValue(1.0);
         ft.setToValue(0.0);
         ft.setOnFinished(new EventHandler<ActionEvent>() {
@@ -87,8 +85,8 @@ public class ArrayContainer extends Pane {
 
         ParallelTransition parT = new ParallelTransition();
         for (int i = index + 1; i < items.size(); i++) {
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), items.get(i));
-            tt.setByX(-80f);
+            TranslateTransition tt = new TranslateTransition(Config.ANIMATION_DURATION, items.get(i));
+            tt.setByX(-Config.CELL_SIZE);
             parT.getChildren().add(tt);
         }
 
@@ -111,9 +109,9 @@ public class ArrayContainer extends Pane {
         FillTransition ft2 = cell2.temporaryColorChange(Color.YELLOW);
         ParallelTransition parHighlight = new ParallelTransition(ft1, ft2);
 
-        TranslateTransition tt1 = new TranslateTransition(Duration.seconds(1), toSwap1);
+        TranslateTransition tt1 = new TranslateTransition(Config.ANIMATION_DURATION, toSwap1);
         tt1.setByX(offset);
-        TranslateTransition tt2 = new TranslateTransition(Duration.seconds(1), toSwap2);
+        TranslateTransition tt2 = new TranslateTransition(Config.ANIMATION_DURATION, toSwap2);
         tt2.setByX(-offset);
         ParallelTransition parTranslate = new ParallelTransition(tt1, tt2);
 

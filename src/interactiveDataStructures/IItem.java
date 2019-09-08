@@ -8,4 +8,5 @@ public interface IItem<T> {
     public void highlight();
     public void unhighlight();
     public void archive();
+    public void unarchive();
 }
