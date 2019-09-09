@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "Topic": {
+      "type": "string"
+    },
+    "nDomande": {
+      "type": "integer"
+    },
+    "Domande": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Domanda": {
+            "type": "string"
+          },
+          "nRisposte": {
+            "type": "integer"
+          },
+          "imgName": {
+            "type": "string"
+          },
+          "Risposte": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems" : 4,
+            "maxItems" : 4
+          },
+          "RispostaCorretta": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Domanda",
+          "imgName",
+          "Risposte",
+          "RispostaCorretta"
+        ]
+      },
+      "minItems" : 1
+    }
+  },
+  "required": [
+    "Topic",
+    "nDomande",
+    "Domande"
+  ]
+}
