@@ -49,7 +49,7 @@ def jsonify(obj) :
 
     jsoned += '\t"Topic" : "' + topic + '",\n'
 
-    jsoned += '\t' + '"nDomande" : "' + str(nQuestions) + '" ,\n'
+    jsoned += '\t' + '"nDomande" : ' + str(nQuestions) + ' ,\n'
 
     jsoned += '\t"Domande" :\n'
     jsoned += '\t\t\t\t[\n'
@@ -58,7 +58,7 @@ def jsonify(obj) :
     for index,el in enumerate(obj) :
         jsoned += '\t\t\t\t\t' + '{\n'
         jsoned += '\t\t\t\t\t' + '"Domanda" : "' + el[0] + '" ,\n'
-        jsoned += '\t\t\t\t\t' + '"nRisposte" : "' + str(el[1]) + '" ,\n'
+        jsoned += '\t\t\t\t\t' + '"nRisposte" : ' + str(el[1]) + ' ,\n'
         jsoned += '\t\t\t\t\t' + '"imgName" : "' + el[2] + '" ,\n'
 
         jsoned += '\t\t\t\t\t' + '"Risposte" :\n'
@@ -77,7 +77,7 @@ def jsonify(obj) :
             nIter += 1
 
         jsoned += '\t\t\t\t\t\t\t' + '] ,\n'
-        jsoned += '"RispostaCorretta" : "' + str(indexCorrectAnswer) +'"\n'
+        jsoned += '"RispostaCorretta" : ' + str(indexCorrectAnswer) +'\n'
 
         jsoned += '\t\t\t\t\t' + '}'
         if index != len(obj)-1 :

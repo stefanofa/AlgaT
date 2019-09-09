@@ -55,7 +55,7 @@ public class QuizEngine extends BaseController{
         quiz = getQuizFromJson();
 
 
-        this.nDomande = Integer.parseInt((quiz.get("nDomande").toString()));
+        this.nDomande = ((Long) quiz.get("nDomande")).intValue();
 
 
         this.domande = (JSONArray)quiz.get("Domande");
@@ -156,7 +156,7 @@ public class QuizEngine extends BaseController{
 
 //------------------------------------------------------------------
 //  Set and show the answers
-        actualCorrectAnswer = Integer.parseInt(actDomanda.get("RispostaCorretta").toString());
+        actualCorrectAnswer = ((Long) actDomanda.get("RispostaCorretta")).intValue();
         JSONArray risposte = (JSONArray) actDomanda.get("Risposte");
 
         Risposta1.setText(risposte.get(0).toString());
