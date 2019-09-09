@@ -50,7 +50,7 @@ public class QuizEngine extends BaseController{
 
     @Override protected void startCtrl() {
 
-
+        this.getActualStage().setFullScreen(true);
         quiz = getQuizFromJson();
 
 
@@ -202,7 +202,7 @@ public class QuizEngine extends BaseController{
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(
-                    "src/topics/" + getParam() + "/quiz/" + getParam() + "Quiz.json"));
+                    "src/lessons/" + getParam() + "/quiz/" + getParam() + "Quiz.json"));
 
 
             return (JSONObject)obj;
@@ -217,7 +217,7 @@ public class QuizEngine extends BaseController{
     private void showImg(String imgName) {
         if (imgName != "null") {
             try {
-                File imgfile = new File("src/topics/" + getParam() + "/quiz/pictures/" + imgName);
+                File imgfile = new File("src/lessons/" + getParam() + "/quiz/pictures/" + imgName);
                 final Stage dialog = new Stage();
                 final ImageView imv = new ImageView();
                 final Image img = new Image(imgfile.toURI().toString());
@@ -237,6 +237,7 @@ public class QuizEngine extends BaseController{
 
     @FXML private void goToMenu(ActionEvent event) {
         try {
+            this.getActualStage().setFullScreen(false);
             switchSceneFromFxmlPath("../menu/menu.fxml");
         } catch (Exception e) {
             e.printStackTrace();
