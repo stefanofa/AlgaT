@@ -37,6 +37,9 @@ public class BaseController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
             BaseController ctrl = loader.<BaseController>getController();
+            //the method initialize is called at the end of the above row, so what is after this comment is not
+            //already configured in the initialize call. example : when you override and then call initialize,
+            //the fields stage and param have null value inside the initialize scope
             ctrl.setStage(this.getActualStage());
             ctrl.setParam(param);
             getActualStage().setScene(new Scene(root, 1366, 768));

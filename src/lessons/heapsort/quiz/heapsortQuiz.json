@@ -1,30 +1,54 @@
 {
     "Topic": "heapsort",
-    "nDomande": 2,
+    "nDomande": 4,
     "Domande": [
         {
-            "Domanda": "Qual \u00e8 la complessit\u00e0 dell'HeapSort?",
-            "nRisposte": 4,
-            "imgName": "cpx.jpg",
-            "Risposte": [
-                "1",
-                "O(n)",
-                "NP",
-                "nlogn"
-            ],
-            "RispostaCorretta": 4
-        },
-        {
-            "Domanda": "Che struttura utilizza l'heapsort?",
+            "Domanda": "Perch\u00e8 viene utilizzata la maxHeapRestore nell'ordinamento crescente?",
             "nRisposte": 4,
             "imgName": "null",
             "Risposte": [
-                "Set",
-                "HashTable",
-                "Heap",
-                "Lista"
+                "Perch\u00e8 essendo un'operazione atomica, \u00e8 pi\u00f9 efficiente",
+                "Perch\u00e8 permette di evitare un doppio trasferimento di elementi",
+                "Si pu\u00f2 anche sostituire con la minHeapRestore, lasciando il resto inalterato",
+                "Perch\u00e8 riduce la complessit\u00e0 dell'algoritmo"
             ],
-            "RispostaCorretta": 3
+            "RispostaCorretta": 2
+        },
+        {
+            "Domanda": "Qual \u00e8 la complessit\u00e0 dell'HeapSort?",
+            "nRisposte": 4,
+            "imgName": "null",
+            "Risposte": [
+                "O(n*logn)",
+                "O(n)",
+                "O(n\u00b2)",
+                "O(logn)"
+            ],
+            "RispostaCorretta": 1
+        },
+        {
+            "Domanda": "Il fattore logn nella complessit\u00e0 dell'HeapSort O(n*logn) \u00e8 dato da:",
+            "nRisposte": 4,
+            "imgName": "null",
+            "Risposte": [
+                "maxHeapRestore",
+                "Dal ciclo",
+                "HeapBuild",
+                "Swap"
+            ],
+            "RispostaCorretta": 1
+        },
+        {
+            "Domanda": "Sta venendo eseguito l'HeapSort. Qual \u00e8 la prossima operazione? (vedi immagine)",
+            "nRisposte": 4,
+            "imgName": "sortIteration.png",
+            "Risposte": [
+                "L'algoritmo termina",
+                "HeapBuild",
+                "MaxHeapRestore",
+                "Swap(1,13)"
+            ],
+            "RispostaCorretta": 4
         }
     ]
 }
