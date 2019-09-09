@@ -59,26 +59,4 @@ public class TreeItem extends InteractiveItem<Integer> {
         if (t != null)
             t.parent = this;
     }
-
-    public boolean isRoot() {
-        return parent == null;
-    }
-
-    public boolean isLeaf() {
-        return leftChild == null && rightChild == null;
-    }
-
-    public Integer height() {
-        if (parent == null)
-            return 0;
-        else return 1 + parent.height();
-    }
-
-    public void unhighlightAll() {
-        unhighlight();
-        if (leftChild != null)
-            leftChild.unhighlightAll();
-        if (rightChild != null)
-            rightChild.unhighlightAll();
-    }
 }

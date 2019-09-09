@@ -1,0 +1,18 @@
+{
+    "Topic": "Heap",
+    "nDomande": 1,
+    "Domande": [
+        {
+            "Domanda": "Quali delle seguenti formule che si riferisce alla relazione tra gli indici dell'array e parentela padre-figlio nell'albero \u00e8 errata?",
+            "nRisposte": 4,
+            "imgName": "null",
+            "Risposte": [
+                "padre = indice / 2",
+                "figlioSX = indice * 2",
+                "padre = indice * 2",
+                "figlioDX = indice * 2 + 1"
+            ],
+            "RispostaCorretta": 3
+        }
+    ]
+}

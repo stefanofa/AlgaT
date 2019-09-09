@@ -1,4 +1,4 @@
-package interactiveDataStructures.graphicEngine;
+package graphicEngine;
 
 import config.Config;
 import interactiveDataStructures.array.InteractiveArray;
@@ -40,10 +40,6 @@ public class GraphicEngine extends VBox {
 
     public String getCurrentAtomicOperation() {
         return getCurrentSnapshot().getAtomicOperation();
-    }
-
-    public void enqueueSnapshot(SnapshotElement el) {
-        history.addElement(el);
     }
 
     private void restart() {
@@ -93,6 +89,14 @@ public class GraphicEngine extends VBox {
         }
     }
 
+    public boolean ended() {
+        return history.ended();
+    }
+
+    public boolean atStart() {
+        return history.atStart();
+    }
+
     public void switchPlayMode() {
         switchPlayMode(playSpeed);
     }
@@ -125,14 +129,6 @@ public class GraphicEngine extends VBox {
 
     public boolean isAutoPlaying() {
         return autoplay;
-    }
-
-    public boolean ended() {
-        return history.ended();
-    }
-
-    public boolean atStart() {
-        return history.atStart();
     }
 
     public void setPlaySpeed(int playSpeed) {

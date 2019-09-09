@@ -1,7 +1,7 @@
 package lessons;
 
 import interactiveDataStructures.heap.InteractiveHeap;
-import interactiveDataStructures.graphicEngine.GraphicEngine;
+import graphicEngine.GraphicEngine;
 import javafx.scene.layout.VBox;
 
 public abstract class Slide extends VBox {
@@ -11,6 +11,5 @@ public abstract class Slide extends VBox {
     public Slide() { }
 
     public GraphicEngine getGraphicEngine() { return ge; }
-    public InteractiveHeap getInteractiveHeap() { return heap; }
     public abstract String getProcedure();
 }

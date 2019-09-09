@@ -1,4 +1,4 @@
-package interactiveDataStructures.graphicEngine;
+package graphicEngine;
 
 
 import java.util.ArrayList;
@@ -7,9 +7,8 @@ public class SnapshotList {
 
     private ArrayList <SnapshotElement> list = new ArrayList<SnapshotElement>();
     private int index = 0;
-    private boolean lastOperationForward = true;
+    private boolean lastOperationForward = true; // Serve per rilevare se sto cambiando direzione di scorrimento
 
-    public SnapshotList() { }
     public SnapshotList(ArrayList<Integer> start) {
         this.list.add(new SnapshotElement(start));
     }
@@ -27,6 +26,8 @@ public class SnapshotList {
         return getCurrentSnapshot();
     }
 
+    // Se sto cambiando direzione di scorrimento (da prev a next)
+    // semplicemente effettuo l'operazione inversa a quella appena analizzata
     public SnapshotElement next() {
         if (index < list.size()-1) {
             if (!lastOperationForward)
@@ -45,14 +46,6 @@ public class SnapshotList {
             lastOperationForward = false;
         }
         return getCurrentSnapshot();
-    }
-
-    public SnapshotElement getPrev() {
-        return list.get(index - 1);
-    }
-
-    public SnapshotElement getNext() {
-        return list.get(index + 1);
     }
 
     public boolean ended() {

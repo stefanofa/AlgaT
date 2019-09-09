@@ -1,8 +1,8 @@
 package interactiveDataStructures.heap;
 
 import javafx.scene.Parent;
-import interactiveDataStructures.graphicEngine.SnapshotElement;
-import interactiveDataStructures.graphicEngine.SnapshotList;
+import graphicEngine.SnapshotElement;
+import graphicEngine.SnapshotList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,107 +12,9 @@ public class InteractiveHeap extends Parent {
     private ArrayList<Integer> heap = new ArrayList<Integer>();
     private String subProcedure;
 
-    public InteractiveHeap() {}
-    public InteractiveHeap(ArrayList<Integer> a) {
-        load(a);
-    }
-
-    public void startRecording() {
-        history = new SnapshotList(heap);
-    }
-
-    public boolean isEmpty() {
-        return heap.isEmpty();
-    }
-
-    public int size() {
-        return heap.size();
-    }
-
-    public void insert(Integer el) {
-        heap.add(el);
-        int i = size() - 1;
-        addSnapshot("insert", i);
-        while (i > 1 && heap.get(i) < heap.get(p(i))) {
-            swap(i, p(i));
-            i = p(i);
-        }
-    }
-
-    public void swap(int index1, int index2) {
-        Collections.swap(heap, index1, index2);
-        addSnapshot("swap", index1, index2);
-    }
-
-    public void minHeapRestore(int i) {
-        int min = i;
-        if (l(i) < heap.size() && heap.get(l(i)) < heap.get(min))
-            min = l(i);
-        if (r(i) < heap.size() && heap.get(r(i)) < heap.get(min))
-            min = r(i);
-        if (i != min) {
-            swap(i, min);
-            minHeapRestore(min);
-        }
-    }
-
-    public void maxHeapRestore(int i) {
-        setSubProcedure("maxHeapRestore(" + (i + 1) + ")");
-        int max = i;
-        if (l(i) < heap.size() && heap.get(l(i)) > heap.get(max))
-            max = l(i);
-        if (r(i) < heap.size() && heap.get(r(i)) > heap.get(max))
-            max = r(i);
-        if (i != max) {
-            swap(i, max);
-            maxHeapRestore(max);
-        }
-        setSubProcedure("");
-    }
-
-    public void maxHeapRestore(int i, int dim) {
-        setSubProcedure("maxHeapRestore(" + (i + 1) + ")");
-        int max = i;
-        if (l(i) <= dim && heap.get(l(i)) > heap.get(max))
-            max = l(i);
-        if (r(i) <= dim && heap.get(r(i)) > heap.get(max))
-            max = r(i);
-        if (i != max) {
-            swap(i, max);
-            maxHeapRestore(max,dim);
-        }
-        setSubProcedure("");
-    }
-
-    public Integer remove(int i) {
-        addSnapshot("delete", i);
-        return heap.remove(i);
-    }
-
-    public ArrayList<Integer> getSnapshot() {
-        return new ArrayList<Integer>(heap);
-    }
-
     public void load(ArrayList<Integer> a) {
         heap = a;
         history = new SnapshotList(a);
-    }
-
-    public void heapBuild() {
-        setSubProcedure("heapBuild()");
-        for (int i = heap.size() / 2; i >= 0; i--)
-            maxHeapRestore(i);
-        setSubProcedure("");
-    }
-
-    public SnapshotList getHistory() {
-        return history;
-    }
-
-    public SnapshotList stopRecordingAndGetHistory() {
-        SnapshotList h = history;
-        history = null;
-        return h;
     }
 
     private static int p(int i) {
@@ -127,21 +29,38 @@ public class InteractiveHeap extends Parent {
         return (i + 1) * 2;
     }
 
-    private void addSnapshot(String op, int index) {
-        if (history != null)
-            history.addElement(new SnapshotElement(getSnapshot(), op, index, subProcedure, op + "(" + (index + 1) + ")"));
+    public int size() {
+        return heap.size();
     }
 
-    private void addSnapshot(String op, int i1, int i2) {
-        if (history != null)
-            history.addElement(new SnapshotElement(getSnapshot(), op, i1, i2, subProcedure, op + "(" + (i1 + 1) + ", " + (i2 + 1) + ")"));
+    public void swap(int index1, int index2) {
+        Collections.swap(heap, index1, index2);
+        addSnapshot("swap", index1, index2);
     }
 
-    public void archive(int i) {
-        if (history != null) {
-            SnapshotElement el = new SnapshotElement(heap, "archive", i);
-            history.addElement(el);
+    public void maxHeapRestore(int i) {
+        maxHeapRestore(i, heap.size());
+    }
+
+    private void maxHeapRestore(int i, int dim) {
+        setSubProcedure("maxHeapRestore(" + (i + 1) + ")");
+        int max = i;
+        if (l(i) <= dim && heap.get(l(i)) > heap.get(max))
+            max = l(i);
+        if (r(i) <= dim && heap.get(r(i)) > heap.get(max))
+            max = r(i);
+        if (i != max) {
+            swap(i, max);
+            maxHeapRestore(max, dim);
         }
+        setSubProcedure("");
+    }
+
+    public void heapBuild() {
+        setSubProcedure("heapBuild()");
+        for (int i = heap.size() / 2; i >= 0; i--)
+            maxHeapRestore(i);
+        setSubProcedure("");
     }
 
     public void heapsort() {
@@ -154,6 +73,13 @@ public class InteractiveHeap extends Parent {
         archive(0);
     }
 
+    public void archive(int i) {
+        if (history != null) {
+            SnapshotElement el = new SnapshotElement(heap, "archive", i);
+            history.addElement(el);
+        }
+    }
+
     public void highlight(int i) {
         if (history != null) {
             SnapshotElement se = new SnapshotElement(heap, "highlight", i);
@@ -164,6 +90,29 @@ public class InteractiveHeap extends Parent {
     private void setSubProcedure(String subProcedure) {
         if (subProcedure != "" && this.subProcedure == "" || subProcedure == "")
             this.subProcedure = subProcedure;
+    }
+
+    public void startRecording() {
+        history = new SnapshotList(heap);
+    }
+
+    private void addSnapshot(String op, int i1, int i2) {
+        if (history != null)
+            history.addElement(new SnapshotElement(getSnapshot(), op, i1, i2, subProcedure, op + "(" + (i1 + 1) + ", " + (i2 + 1) + ")"));
+    }
+
+    public ArrayList<Integer> getSnapshot() {
+        return new ArrayList<Integer>(heap);
+    }
+
+    public SnapshotList getHistory() {
+        return history;
+    }
+
+    public SnapshotList stopRecordingAndGetHistory() {
+        SnapshotList h = history;
+        history = null;
+        return h;
     }
 
 }

@@ -43,19 +43,6 @@ public class InteractiveArray extends Parent {
         return index;
     }
 
-    public void removeAt(int index) {
-        if (list.size() > 0 && index < list.size()) {
-            list.remove(index);
-            container.removeAt(index);
-        }
-    }
-
-    public void remove(int el) {
-        int index = indexOf(el);
-        if (index >= 0)
-            removeAt(index);
-    }
-
     public void highlightAt(int index) {
         ArrayItem item = list.get(index);
         item.highlight();

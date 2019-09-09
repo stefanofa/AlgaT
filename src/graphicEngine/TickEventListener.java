@@ -1,4 +1,4 @@
-package interactiveDataStructures.graphicEngine;
+package graphicEngine;
 
 public interface TickEventListener {
     void onTick();

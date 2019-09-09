@@ -16,24 +16,8 @@ public class BinaryTree {
 
     public BinaryTree() { }
 
-    public Integer getHeight() {
-        return height;
-    }
-
     public TreeItem getRoot() {
         return root;
-    }
-
-    public TreeItem getSelected() {
-        return selected;
-    }
-
-    public void select(TreeItem t) {
-        selected = t;
-    }
-
-    public boolean isEmpty() {
-        return root == null;
     }
 
     public int size() {
@@ -41,94 +25,10 @@ public class BinaryTree {
     }
 
     public void insertRoot(TreeItem t) {
-        if (root == null) {
-            root = t;
-            size = 1;
-            heapArray = new ArrayList<TreeItem>();
-            heapArray.add(t);
-        }
-    }
-
-    public void insert(TreeItem t) {
-        int lastParentIndex = heapArray.size() / 2 - 1;
-        TreeItem p = heapArray.get(lastParentIndex);
-        if (p.getRightChild() == null)
-            p.insertRight(t);
-        else {
-            p = heapArray.get(lastParentIndex + 1);
-            p.insertLeft(t);
-        }
+        root = t;
+        size = 1;
+        heapArray = new ArrayList<TreeItem>();
         heapArray.add(t);
-    }
-
-    /*
-    public void insertLeft(TreeItem t, TreeItem l) {
-        if (t.getLeftChild() == null) {
-            t.insertLeft(l);
-            size++;
-            if (l.height() > height)
-                height = l.height();
-        }
-    }
-
-    public void insertRight(TreeItem t, TreeItem r) {
-        if (t.getRightChild() == null) {
-            t.insertRight(r);
-            size++;
-            if (r.height() > height)
-                height = r.height();
-        }
-    }
-    */
-
-    public LinkedList<TreeItem> find(Integer el) {
-        LinkedList<TreeItem> list = new LinkedList<TreeItem>();
-        Queue<TreeItem> q = new LinkedList<TreeItem>();
-        q.add(root);
-
-        while (!q.isEmpty()) {
-            TreeItem t = q.remove();
-            if (t.getLeftChild() != null)
-                q.add(t.getLeftChild());
-            if (t.getRightChild() != null)
-                q.add(t.getRightChild());
-
-            if (t.getContent() == el)
-                list.add(t);
-        }
-
-        return list;
-    }
-
-    //BFS
-    public TreeItem findOne(Integer el) {
-        TreeItem item = null;
-        Queue<TreeItem> q = new LinkedList<TreeItem>();
-        q.add(root);
-
-        while (!q.isEmpty() && item == null) {
-            TreeItem t = q.remove();
-            if (t.getLeftChild() != null)
-                q.add(t.getLeftChild());
-            if (t.getRightChild() != null)
-                q.add(t.getRightChild());
-
-            if (t.getContent() == el)
-                item = t;
-        }
-
-        return item;
-    }
-
-    public void removeLeaf(TreeItem t) {
-        if (t.isLeaf()) {
-            TreeItem p = t.getParent();
-
-            if (p.getLeftChild() == t)
-                p.deleteLeft();
-            else
-                p.deleteRight();
-        }
     }
 
     public void swap(TreeItem t1, TreeItem t2) {
@@ -168,14 +68,6 @@ public class BinaryTree {
             Collections.swap(heapArray, heapArray.indexOf(t1), heapArray.indexOf(t2));
     }
 
-    public void unhighlightAll() {
-        root.unhighlightAll();
-    }
-
-    public void archive() {
-        selected.setStatus(Status.ARCHIVED);
-    }
-
     public void loadHeap(ArrayList<Integer> a) {
         this.heapArray = new ArrayList<TreeItem>();
         if (!a.isEmpty()) {
@@ -210,13 +102,6 @@ public class BinaryTree {
 
     public TreeItem getByIndex(int index) {
         return heapArray.get(index);
-    }
-
-    private Integer getMaxHeight(TreeItem t) {
-        if (t.isLeaf())
-            return 0;
-        else
-            return 1 + Math.max(getMaxHeight(t.getLeftChild()), getMaxHeight(t.getRightChild()));
     }
 
     private void setRoot(TreeItem t) {

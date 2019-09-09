@@ -2,8 +2,8 @@ package lessons;
 
 import config.BaseController;
 import config.Config;
-import interactiveDataStructures.graphicEngine.GraphicEngine;
-import interactiveDataStructures.graphicEngine.TickEventHandler;
+import graphicEngine.GraphicEngine;
+import graphicEngine.TickEventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

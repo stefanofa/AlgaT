@@ -81,33 +81,6 @@ public class ArrayContainer extends Pane {
         parT.play();
     }
 
-    public void removeAt(int index) {
-        List<Node> items = this.getChildren();
-        Node toRemove = items.get(index);
-
-        FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, toRemove);
-        ft.setFromValue(1.0);
-        ft.setToValue(0.0);
-        ft.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                items.remove(toRemove);
-            }
-        });
-
-        ParallelTransition parT = new ParallelTransition();
-        for (int i = index + 1; i < items.size(); i++) {
-            TranslateTransition tt = new TranslateTransition(Config.ANIMATION_DURATION, items.get(i));
-            tt.setByX(-Config.CELL_SIZE);
-            parT.getChildren().add(tt);
-        }
-
-        SequentialTransition seqT = new SequentialTransition(ft, parT);
-        size--;
-
-        seqT.play();
-    }
-
     public void swap(ArrayItem a1, ArrayItem a2) {
         Cell toSwap1 = a1.getCell();
         Cell toSwap2 = a2.getCell();

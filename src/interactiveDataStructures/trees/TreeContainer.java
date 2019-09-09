@@ -17,150 +17,6 @@ import java.util.Queue;
 
 public class TreeContainer extends Pane {
 
-    public TreeContainer() {
-
-    }
-
-    public void insertRoot(TreeItem t) {
-        CircleCell c = (CircleCell) t.getCell();
-        FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, c);
-        ft.setFromValue(0);
-        ft.setToValue(1);
-
-        this.getChildren().add(c);
-        ft.play();
-    }
-
-    private ParallelTransition addLevel(BinaryTree tree) {
-        List<Node> nodes = this.getChildren();
-        int k = 0;
-        while (k < nodes.size()) {
-            if (nodes.get(k) instanceof Line)
-                nodes.remove(k);
-            else
-                k++;
-        }
-
-        ParallelTransition restructure = new ParallelTransition();
-        Queue<TreeItem> q = new LinkedList<TreeItem>();
-        int i = 0;
-        int j = -1;
-        int h = tree.getHeight();
-
-        tree.getRoot().tempLevel = 0;
-        q.add(tree.getRoot());
-
-        while (!q.isEmpty()) {
-            TreeItem t = q.remove();
-            TreeItem l = t.getLeftChild();
-            TreeItem r = t.getRightChild();
-
-            if (t.tempLevel > i) {
-                i = t.tempLevel;
-                j = 0;
-            } else
-                j++;
-
-            if (t.getContent() != null) {
-                if (l == null)
-                    l = new TreeItem(null);
-                l.tempLevel = i + 1;
-                q.add(l);
-
-                if (r == null)
-                    r = new TreeItem(null);
-                r.tempLevel = i + 1;
-                q.add(r);
-
-                TranslateTransition tt = new TranslateTransition(Config.ANIMATION_DURATION, t.getCell());
-                double offset = Math.pow(2, h - i) * (Config.HALF_CELL_SPACE + Config.CELL_SPACE * j);
-                tt.setByX(offset);
-                t.tempX = t.getCell().getXPosition() + offset;
-                restructure.getChildren().add(tt);
-
-                TreeItem p = t.getParent();
-
-                if (p != null) {
-                    Line line = new Line();
-                    line.setStartX(p.tempX);
-                    line.setStartY((i - 1) * Config.TREE_VERTICAL_OFFSET + Config.HALF_CELL_SIZE);
-                    line.setEndX(t.tempX);
-                    line.setEndY(i * Config.TREE_VERTICAL_OFFSET + Config.HALF_CELL_SIZE);
-                    this.getChildren().add(line);
-                    line.toBack();
-                    p.getCell().toFront();
-                    t.getCell().toFront();
-
-                    FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, line);
-                    ft.setFromValue(0);
-                    ft.setToValue(1);
-                    restructure.getChildren().add(ft);
-                }
-            }
-        }
-
-        return restructure;
-    }
-
-    private void insert(BinaryTree tree, TreeItem t, TreeItem c, int sign) {
-        SequentialTransition sequentialTransition = new SequentialTransition();
-        int h = tree.getHeight();
-
-        if (tree.getHeight() == t.height()) {
-            sequentialTransition.getChildren().add(addLevel(tree));
-            h++;
-        }
-
-        TreeContainer that = this;
-        int finalH = h;
-        sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                CircleCell parent = (CircleCell) t.getCell();
-                CircleCell child = (CircleCell) c.getCell();
-
-                double x = parent.getXPosition();
-                double y = parent.getYPosition();
-                int i = t.height() + 1;
-                child.setLayoutX(x - Config.HALF_CELL_SIZE + sign * Config.HALF_CELL_SPACE * Math.pow(2, finalH - i));
-                child.setLayoutY(y + Config.TREE_VERTICAL_OFFSET - Config.HALF_CELL_SIZE);
-
-                FadeTransition ft1 = new FadeTransition(Config.ANIMATION_DURATION, child);
-                ft1.setFromValue(0);
-                ft1.setToValue(1);
-
-                Line line = new Line();
-                line.setStartX(parent.getXPosition());
-                line.setStartY(parent.getYPosition());
-                line.setEndX(child.getXPosition() + Config.HALF_CELL_SIZE);
-                line.setEndY(child.getYPosition() + Config.HALF_CELL_SIZE);
-                line.toBack();
-
-                FadeTransition ft2 = new FadeTransition(Config.ANIMATION_DURATION, line);
-                ft2.setFromValue(0);
-                ft2.setToValue(1);
-
-                that.getChildren().add(line);
-                that.getChildren().add(child);
-                parent.toFront();
-                child.toFront();
-
-                ParallelTransition p = new ParallelTransition(ft1, ft2);
-                p.play();
-            }
-        });
-
-        sequentialTransition.play();
-    }
-
-    public void insertLeft(BinaryTree tree, TreeItem t, TreeItem l) {
-        insert(tree, t, l, -1);
-    }
-
-    public void insertRight(BinaryTree tree, TreeItem t, TreeItem r) {
-        insert(tree, t, r, 1);
-    }
-
     public void swap(TreeItem t1, TreeItem t2) {
         CircleCell c1 = (CircleCell) t1.getCell();
         CircleCell c2 = (CircleCell) t2.getCell();
@@ -181,16 +37,19 @@ public class TreeContainer extends Pane {
         tt2.setByX(-deltaX);
         tt2.setByY(-deltaY);
 
+        // Preparazione delle animazioni di evidenziamento e de-evidenziamento
         FillTransition ft1 = c1.temporaryColorChange(Color.YELLOW);
         FillTransition ft2 = c2.temporaryColorChange(Color.YELLOW);
         FillTransition rt1 = c1.revertColorChange();
         FillTransition rt2 = c2.revertColorChange();
 
+        // Implementazione della sequenzialità/parallelismo tra le animazioni
         ParallelTransition highlight = new ParallelTransition(ft1, ft2);
         ParallelTransition pt = new ParallelTransition(tt1, tt2);
         ParallelTransition unhighlight = new ParallelTransition(rt1, rt2);
-
         SequentialTransition st = new SequentialTransition(highlight, pt, unhighlight);
+
+        // Alla fine delle animazioni occorre riportare gli elementi in primo piano, altrimenti compare la linea sopra di essi
         st.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -203,30 +62,37 @@ public class TreeContainer extends Pane {
 
     public void load(BinaryTree tree) {
         this.getChildren().clear();
+        System.out.println(this.getChildren());
         int n = tree.size();
         int height = (int) (Math.log(n) / Math.log(2));
         int level = 0;
+
         TreeItem t = tree.getRoot();
         t.tempLevel = 0;
         Queue<TreeItem> q = new LinkedList<TreeItem>();
         q.add(t);
+        // La variabile j identifica la posizione dell'elemento orizzontalmente, ogni volta che "si va a capo" viene riazzerata
         int j = -1;
 
         while (!q.isEmpty()) {
             t = q.remove();
 
+            // Se il nuovo elemento in coda è al livello inferiore aumento level e azzero j, altrimenti incremento j
             if (t.tempLevel > level) {
                 level++;
                 j = 0;
             } else
                 j++;
 
+            // Posizionamento cella
             Cell c = t.getCell();
             t.tempX = Math.pow(2, height - level) * (Config.HALF_CELL_SPACE + Config.CELL_SPACE * j);
             c.setLayoutX(t.tempX);
             c.setLayoutY(Config.TREE_VERTICAL_OFFSET * level);
+            c.toFront();
             this.getChildren().add(c);
 
+            // Tracciamento linea di collegamento padre-figlio
             TreeItem p = t.getParent();
             if (p != null) {
                 Line line = new Line();
@@ -240,6 +106,7 @@ public class TreeContainer extends Pane {
                 t.getCell().toFront();
             }
 
+            // Aggiunta figli destro e sinistro (se presenti) alla coda BFS
             TreeItem l = t.getLeftChild();
             TreeItem r = t.getRightChild();
             if (l != null) {
