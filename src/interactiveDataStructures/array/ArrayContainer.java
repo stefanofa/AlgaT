@@ -1,9 +1,11 @@
 package interactiveDataStructures.array;
 
-import baseController.Config;
+import config.Config;
 import interactiveDataStructures.cells.Cell;
+import interactiveDataStructures.cells.IndexCell;
 import interactiveDataStructures.cells.SquareCell;
 import javafx.animation.*;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -20,8 +22,11 @@ public class ArrayContainer extends Pane {
     public void add(ArrayItem el) {
         SquareCell cell = (SquareCell) el.getCell();
         cell.setLayoutX(Config.CELL_SIZE * size);
+        IndexCell ic = new IndexCell(size + 1);
+        ic.setLayoutX(Config.CELL_SIZE * size);
+        ic.setLayoutY(Config.CELL_SIZE);
         size++;
-        this.getChildren().add(cell);
+        this.getChildren().addAll(cell, ic);
 
         FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, cell);
         ft.setFromValue(0.0);
@@ -31,10 +36,13 @@ public class ArrayContainer extends Pane {
     }
 
     public void add(int index, ArrayItem el) {
-        List<Node> items = this.getChildren();
+        ObservableList<Node> items = this.getChildren();
         Node toAdd = el.getCell();
         toAdd.setLayoutX(Config.CELL_SIZE * index);
-        items.add(toAdd);
+        IndexCell ic = new IndexCell(size + 1);
+        ic.setLayoutX(Config.CELL_SIZE * size);
+        ic.setLayoutY(Config.CELL_SIZE);
+        items.addAll(toAdd, ic);
         size++;
 
         ParallelTransition parT = new ParallelTransition();
@@ -54,13 +62,17 @@ public class ArrayContainer extends Pane {
     }
 
     public void addAll(ArrayList<ArrayItem> a) {
+        this.getChildren().clear();
         size = 0;
         ParallelTransition parT = new ParallelTransition();
         for (ArrayItem item : a) {
             SquareCell cell = (SquareCell) item.getCell();
             cell.setLayoutX(size * Config.CELL_SIZE);
+            IndexCell ic = new IndexCell(size + 1);
+            ic.setLayoutX(Config.CELL_SIZE * size);
+            ic.setLayoutY(Config.CELL_SIZE);
             size++;
-            this.getChildren().add(cell);
+            this.getChildren().addAll(cell, ic);
             FadeTransition ft = new FadeTransition(Config.ANIMATION_DURATION, cell);
             ft.setFromValue(0.0);
             ft.setToValue(1.0);

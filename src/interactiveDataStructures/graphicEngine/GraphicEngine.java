@@ -1,6 +1,6 @@
-package interactiveDataStructures.snapshot;
+package interactiveDataStructures.graphicEngine;
 
-import baseController.Config;
+import config.Config;
 import interactiveDataStructures.array.InteractiveArray;
 import interactiveDataStructures.trees.InteractiveBinaryTree;
 import javafx.scene.layout.VBox;
@@ -13,6 +13,8 @@ public class GraphicEngine extends VBox {
     private InteractiveArray ia = new InteractiveArray();
     private InteractiveBinaryTree ibt = new InteractiveBinaryTree();
     private Timer timer = new Timer();
+    private int playSpeed = Config.ANIMATION_DEFAULT_MILLIS * 3;
+    private TickEventListener listener;
 
     private boolean autoplay = false;
 
@@ -26,6 +28,18 @@ public class GraphicEngine extends VBox {
     public void load(SnapshotList history) {
         this.history = history;
         restart();
+    }
+
+    public SnapshotElement getCurrentSnapshot() {
+        return history.getCurrentSnapshot();
+    }
+
+    public String getCurrentSubProcedure() {
+        return getCurrentSnapshot().getSubProcedure();
+    }
+
+    public String getCurrentAtomicOperation() {
+        return getCurrentSnapshot().getAtomicOperation();
     }
 
     public void enqueueSnapshot(SnapshotElement el) {
@@ -55,6 +69,7 @@ public class GraphicEngine extends VBox {
                 ia.highlightAt(index);
                 ibt.highlight(index);
             }
+            tick();
         }
     }
 
@@ -74,11 +89,12 @@ public class GraphicEngine extends VBox {
                 ia.unhighlightAt(index);
                 ibt.unhighlight(index);
             }
+            tick();
         }
     }
 
     public void switchPlayMode() {
-            switchPlayMode(Config.ANIMATION_DEFAULT_MILLIS * 3);
+        switchPlayMode(playSpeed);
     }
 
     public void switchPlayMode(int timeout) {
@@ -111,4 +127,22 @@ public class GraphicEngine extends VBox {
         return autoplay;
     }
 
+    public boolean ended() {
+        return history.ended();
+    }
+
+    public boolean atStart() {
+        return history.atStart();
+    }
+
+    public void setPlaySpeed(int playSpeed) {
+        this.playSpeed = playSpeed;
+    }
+
+    public void setTickListener(TickEventListener listener) { this.listener = listener; }
+
+    private void tick() {
+        if (listener != null)
+            listener.onTick();
+    }
 }

@@ -1,6 +1,6 @@
 package interactiveDataStructures.cells;
 
-import baseController.Config;
+import config.Config;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

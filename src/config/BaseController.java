@@ -1,5 +1,7 @@
-package baseController;
+package config;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,7 +32,6 @@ public class BaseController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
-            System.out.println(root);
             BaseController ctrl = loader.<BaseController>getController();
             ctrl.setStage(this.getActualStage());
             ctrl.setParam(param);
@@ -41,6 +42,15 @@ public class BaseController {
             e.printStackTrace();
         }
 
+    }
+
+    @FXML
+    private void goToMenu(ActionEvent event) {
+        try {
+            switchSceneFromFxmlPath("../../../menu/menu.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package interactiveDataStructures.snapshot;
+package interactiveDataStructures.graphicEngine;
 
 import java.util.ArrayList;
 
@@ -13,15 +13,17 @@ public class SnapshotElement extends Object {
     boolean highlightTrans = false;
     int index;
     int index2;
-    String label = null;
+    String subProcedure = null;
+    String atomicOperation = null;
 
     public SnapshotElement(ArrayList<Integer> array) {
         this.heapArray = new ArrayList<Integer>(array);
     }
 
-    public SnapshotElement(ArrayList<Integer> array, String label) {
+    public SnapshotElement(ArrayList<Integer> array, String subProcedure, String atomicOperation) {
         this.heapArray = new ArrayList<Integer>(array);
-        this.label = label;
+        this.subProcedure = subProcedure;
+        this.atomicOperation = atomicOperation;
     }
 
     public SnapshotElement(ArrayList<Integer> array, String op, int index) {
@@ -37,7 +39,7 @@ public class SnapshotElement extends Object {
             this.highlightTrans = true;
     }
 
-    public SnapshotElement(ArrayList<Integer> array, String op, int index, String label) {
+    public SnapshotElement(ArrayList<Integer> array, String op, int index, String subProcedure, String atomicOperation) {
         this.heapArray = array;
         this.index = index;
         if (op == "insert")
@@ -48,7 +50,8 @@ public class SnapshotElement extends Object {
             this.archiveTrans = true;
         else if (op == "highlight")
             this.highlightTrans = true;
-        this.label = label;
+        this.subProcedure = subProcedure;
+        this.atomicOperation = atomicOperation;
     }
 
     public SnapshotElement(ArrayList<Integer> array, String op, int index1, int index2) {
@@ -58,12 +61,13 @@ public class SnapshotElement extends Object {
         this.index2 = index2;
     }
 
-    public SnapshotElement(ArrayList<Integer> array, String op, int index1, int index2, String label) {
+    public SnapshotElement(ArrayList<Integer> array, String op, int index1, int index2, String subProcedure, String atomicOperation) {
         this.heapArray = array;
         this.swapTrans = true;
         this.index = index1;
         this.index2 = index2;
-        this.label = label;
+        this.subProcedure = subProcedure;
+        this.atomicOperation = atomicOperation;
     }
 
     public ArrayList getHeapArray() {
@@ -83,6 +87,7 @@ public class SnapshotElement extends Object {
     }
     public boolean isArchiveTrans() { return this.archiveTrans; }
     public boolean isHighlightTrans() { return this.highlightTrans; }
-    public String getLabel() { return this.label; }
+    public String getSubProcedure() { return this.subProcedure; }
+    public String getAtomicOperation() { return this.atomicOperation; }
 
 }

@@ -1,6 +1,6 @@
 package interactiveDataStructures.trees;
 
-import baseController.Config;
+import config.Config;
 import interactiveDataStructures.cells.Cell;
 import interactiveDataStructures.cells.CircleCell;
 import javafx.animation.*;
@@ -18,7 +18,7 @@ import java.util.Queue;
 public class TreeContainer extends Pane {
 
     public TreeContainer() {
-        this.setPrefSize(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
+
     }
 
     public void insertRoot(TreeItem t) {
@@ -202,9 +202,9 @@ public class TreeContainer extends Pane {
     }
 
     public void load(BinaryTree tree) {
+        this.getChildren().clear();
         int n = tree.size();
         int height = (int) (Math.log(n) / Math.log(2));
-        System.out.println(n + " " + height);
         int level = 0;
         TreeItem t = tree.getRoot();
         t.tempLevel = 0;

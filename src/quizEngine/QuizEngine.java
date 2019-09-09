@@ -1,7 +1,6 @@
 package quizEngine;
 
-import baseController.BaseController;
-import com.sun.tools.javac.Main;
+import config.BaseController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -217,7 +216,6 @@ public class QuizEngine extends BaseController{
     private void showImg(String imgName) {
         if (imgName != "null") {
             try {
-                System.out.println("src/topics/" + getParam() + "/quiz/pictures/" + imgName);
                 File imgfile = new File("src/topics/" + getParam() + "/quiz/pictures/" + imgName);
                 final Stage dialog = new Stage();
                 final ImageView imv = new ImageView();

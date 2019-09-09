@@ -1,7 +1,6 @@
 package interactiveDataStructures.cells;
 
-import baseController.Config;
-import interactiveDataStructures.cells.Cell;
+import config.Config;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 

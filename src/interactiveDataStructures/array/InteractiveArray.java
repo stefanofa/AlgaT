@@ -82,6 +82,7 @@ public class InteractiveArray extends Parent {
     }
 
     public void load(ArrayList<Integer> a) {
+        list.clear();
         for (Integer x : a)
             list.add(new ArrayItem(x));
         container.addAll(list);

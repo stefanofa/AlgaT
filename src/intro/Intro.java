@@ -3,7 +3,7 @@ package intro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
-import baseController.BaseController;
+import config.BaseController;
 
 public class Intro extends BaseController{
 

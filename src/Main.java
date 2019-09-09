@@ -3,7 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import baseController.BaseController;
+import config.BaseController;
 import javafx.util.Duration;
 
 public class Main extends Application {

@@ -10,23 +10,10 @@
    <children>
       <HBox prefHeight="64.0" prefWidth="1366.0" style="-fx-background-color: cyan;">
          <children>
-            <TextField fx:id="input" prefHeight="26.0" prefWidth="138.0">
+            <TextField fx:id="index1" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="138.0" promptText="Index1">
                <HBox.margin>
                   <Insets left="150.0" />
                </HBox.margin></TextField>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addElement" text="Add">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeElement" text="Remove">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <Button fx:id="archiveButton" layoutX="192.0" layoutY="10.0" mnemonicParsing="false" onAction="#archiveElement" text="Archive">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <TextField fx:id="index1" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="138.0" promptText="Index1" />
             <Button fx:id="swapButton" mnemonicParsing="false" onAction="#swap" text="Swap">
                <HBox.margin>
                   <Insets />
@@ -35,22 +22,6 @@
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></TextField>
-            <Button fx:id="treeButton" layoutX="607.0" layoutY="10.0" mnemonicParsing="false" onAction="#tree" text="Tree">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <Button fx:id="leftButton" layoutX="661.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertLeft" text="Left">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <Button fx:id="rightButton" layoutX="709.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertRight" text="Right">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <Button fx:id="deleteButton" layoutX="752.0" layoutY="10.0" mnemonicParsing="false" onAction="#start" text="Start">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
             <Button fx:id="prevButton" layoutX="800.0" layoutY="10.0" mnemonicParsing="false" onAction="#prev" text="Prev">
                <HBox.margin>
                   <Insets right="10.0" />
@@ -59,6 +30,12 @@
             <Button fx:id="nextButton" layoutX="850.0" layoutY="10.0" mnemonicParsing="false" onAction="#next" text="Next">
                <HBox.margin>
                   <Insets right="150.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#reset" text="Reset" />
+            <Button mnemonicParsing="false" onAction="#exit" text="Esci">
+               <HBox.margin>
+                  <Insets left="400.0" />
                </HBox.margin>
             </Button>
          </children>

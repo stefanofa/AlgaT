@@ -1,8 +1,8 @@
 package interactiveDataStructures.heap;
 
 import javafx.scene.Parent;
-import interactiveDataStructures.snapshot.SnapshotElement;
-import interactiveDataStructures.snapshot.SnapshotList;
+import interactiveDataStructures.graphicEngine.SnapshotElement;
+import interactiveDataStructures.graphicEngine.SnapshotList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +10,7 @@ import java.util.Collections;
 public class InteractiveHeap extends Parent {
     private SnapshotList history = null;
     private ArrayList<Integer> heap = new ArrayList<Integer>();
+    private String subProcedure;
 
     public InteractiveHeap() {}
     public InteractiveHeap(ArrayList<Integer> a) {
@@ -43,13 +44,6 @@ public class InteractiveHeap extends Parent {
         addSnapshot("swap", index1, index2);
     }
 
-    // Precondition: size() > 0
-    public Integer deleteMin() {
-        swap(0, size() - 1);
-        minHeapRestore(0);
-        return remove(size() - 1);
-    }
-
     public void minHeapRestore(int i) {
         int min = i;
         if (l(i) < heap.size() && heap.get(l(i)) < heap.get(min))
@@ -63,6 +57,7 @@ public class InteractiveHeap extends Parent {
     }
 
     public void maxHeapRestore(int i) {
+        setSubProcedure("maxHeapRestore(" + (i + 1) + ")");
         int max = i;
         if (l(i) < heap.size() && heap.get(l(i)) > heap.get(max))
             max = l(i);
@@ -72,9 +67,11 @@ public class InteractiveHeap extends Parent {
             swap(i, max);
             maxHeapRestore(max);
         }
+        setSubProcedure("");
     }
 
     public void maxHeapRestore(int i, int dim) {
+        setSubProcedure("maxHeapRestore(" + (i + 1) + ")");
         int max = i;
         if (l(i) <= dim && heap.get(l(i)) > heap.get(max))
             max = l(i);
@@ -84,6 +81,7 @@ public class InteractiveHeap extends Parent {
             swap(i, max);
             maxHeapRestore(max,dim);
         }
+        setSubProcedure("");
     }
 
     public Integer remove(int i) {
@@ -101,8 +99,10 @@ public class InteractiveHeap extends Parent {
     }
 
     public void heapBuild() {
+        setSubProcedure("heapBuild()");
         for (int i = heap.size() / 2; i >= 0; i--)
             maxHeapRestore(i);
+        setSubProcedure("");
     }
 
     public SnapshotList getHistory() {
@@ -129,12 +129,12 @@ public class InteractiveHeap extends Parent {
 
     private void addSnapshot(String op, int index) {
         if (history != null)
-            history.addElement(new SnapshotElement(getSnapshot(), op, index));
+            history.addElement(new SnapshotElement(getSnapshot(), op, index, subProcedure, op + "(" + (index + 1) + ")"));
     }
 
     private void addSnapshot(String op, int i1, int i2) {
         if (history != null)
-            history.addElement(new SnapshotElement(getSnapshot(), op, i1, i2));
+            history.addElement(new SnapshotElement(getSnapshot(), op, i1, i2, subProcedure, op + "(" + (i1 + 1) + ", " + (i2 + 1) + ")"));
     }
 
     public void archive(int i) {
@@ -159,6 +159,11 @@ public class InteractiveHeap extends Parent {
             SnapshotElement se = new SnapshotElement(heap, "highlight", i);
             history.addElement(se);
         }
+    }
+
+    private void setSubProcedure(String subProcedure) {
+        if (subProcedure != "" && this.subProcedure == "" || subProcedure == "")
+            this.subProcedure = subProcedure;
     }
 
 }

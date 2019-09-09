@@ -1,4 +1,4 @@
-package interactiveDataStructures.snapshot;
+package interactiveDataStructures.graphicEngine;
 
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class SnapshotList {
         list.add(el);
     }
 
-    private SnapshotElement getCurrentSnapshot() {
+    public SnapshotElement getCurrentSnapshot() {
         return list.get(index);
     }
 

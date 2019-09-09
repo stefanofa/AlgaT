@@ -1,6 +1,6 @@
 package interactiveDataStructures.cells;
 
-import baseController.Config;
+import config.Config;
 import javafx.animation.FillTransition;
 import javafx.geometry.Bounds;
 import javafx.scene.layout.StackPane;
@@ -74,7 +74,6 @@ public abstract class Cell extends StackPane implements ICell {
 
     @Override
     public FillTransition revertColorChange() {
-        System.out.println(color + " " + prevColor);
         FillTransition ft = new FillTransition(Config.ANIMATION_DURATION, shape, color, prevColor);
         color = prevColor;
         prevColor = null;
