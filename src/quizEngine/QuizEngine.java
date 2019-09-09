@@ -74,6 +74,7 @@ public class QuizEngine extends BaseController{
         //of actualCheckedAnswer
         toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> uploadCheckedAnswer());
 
+        //make the button "Mostra Immagine" to show the pictures related to the Answer when it is clicked
         btnShow.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
