@@ -6,14 +6,11 @@ import interactiveDataStructures.cells.IndexCell;
 import interactiveDataStructures.cells.SquareCell;
 import javafx.animation.*;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ArrayContainer extends Pane {
 
@@ -61,7 +58,7 @@ public class ArrayContainer extends Pane {
         seqT.play();
     }
 
-    public void addAll(ArrayList<ArrayItem> a) {
+    void addAll(ArrayList<ArrayItem> a) {
         this.getChildren().clear();
         size = 0;
         ParallelTransition parT = new ParallelTransition();

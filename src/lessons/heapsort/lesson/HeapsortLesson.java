@@ -14,6 +14,7 @@ public class HeapsortLesson extends Lesson {
         super.initialize(borderPane, autoButton);
         slides.add(new Heapsort1());
         setSlide(slideIndex);
+        topic = "heapsort";
     }
 
 }

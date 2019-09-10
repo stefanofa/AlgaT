@@ -19,5 +19,6 @@ public class HeapLesson extends Lesson {
         slides.add(new Heap2());
         slides.add(new Heap3());
         setSlide(slideIndex);
+        topic = "heap";
     }
 }

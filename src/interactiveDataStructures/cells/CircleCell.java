@@ -10,15 +10,6 @@ public class CircleCell extends Cell {
         super.shape(new Circle(Config.HALF_CELL_SIZE), Color.WHITE, Color.BLACK);
     }
 
-    public CircleCell() {
-        initialize();
-    }
-
-    public CircleCell(String content) {
-        super(content);
-        initialize();
-    }
-
     public CircleCell(Integer content) {
         super(content);
         initialize();

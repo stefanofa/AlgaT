@@ -28,19 +28,12 @@ public class Menu extends BaseController {
             topic = id.replace("Lesson", "");
             type = "lesson";
             suffix = "Lesson.fxml";
-            switchSceneFromFxmlPath("../lessons/" + topic + "/" + type + "/" + topic + suffix, topic);
+            switchSceneFromFxmlPath("/lessons/" + topic + "/" + type + "/" + topic + suffix, topic);
         } else { // Contains "Quiz"
             topic = id.replace("Quiz", "");
-            type = "quiz";
-            suffix = "Quiz.fxml";
-            switchSceneFromFxmlPath("../quizEngine/quizEngine.fxml", topic);
+            switchSceneFromFxmlPath("/quizEngine/quizEngine.fxml", topic);
         }
 
-    }
-
-    @FXML protected void goToQuiz(ActionEvent event) {
-        String id = ((Button) event.getSource()).getId();
-        switchSceneFromFxmlPath("../lessons/" + id + "/quiz/" + id + "Quiz.fxml");
     }
 
     @FXML private void stop(ActionEvent event) {
@@ -48,7 +41,7 @@ public class Menu extends BaseController {
     }
 
     @FXML protected void openPlayground() {
-        switchSceneFromFxmlPath("../playground/playground.fxml");
+        switchSceneFromFxmlPath("/playground/playground.fxml");
     }
 
 

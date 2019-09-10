@@ -30,21 +30,6 @@ public class InteractiveItem<T> extends Observable implements IItem<T> {
         this.cell = cell;
     }
 
-    @Override
-    public T getContent() {
-        return content;
-    }
-
-    @Override
-    public void setContent(T value) {
-        this.content = content;
-    }
-
-    @Override
-    public Status getStatus() {
-        return status;
-    }
-
     public final Cell getCell() {
         return cell;
     }
@@ -82,12 +67,6 @@ public class InteractiveItem<T> extends Observable implements IItem<T> {
             return Color.WHITE;
         else if (status == Status.ARCHIVED)
             return Color.GRAY;
-        else if (status == Status.DANGER)
-            return Color.RED;
-        else if (status == Status.WARNING)
-            return Color.ORANGE;
-        else if (status == Status.SUCCESS)
-            return Color.GREEN;
         else if (status == Status.HIGHLIGHTED)
             return Color.YELLOW;
         else return Color.BLACK;

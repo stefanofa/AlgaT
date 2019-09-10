@@ -15,34 +15,6 @@ public class InteractiveArray extends Parent {
         this.getChildren().add(container);
     }
 
-    public InteractiveArray(ArrayList<Integer> a) {
-        this.getChildren().add(container);
-        load(a);
-    }
-
-    public void push(int el) {
-        ArrayItem item = new ArrayItem(el);
-        list.add(item);
-        container.add(item);
-    }
-
-    public void insertAt(int index, int el) {
-        ArrayItem item = new ArrayItem(el);
-        list.add(index, item);
-        container.add(index, item);
-    }
-
-    public int indexOf(int el) {
-        int i = 0;
-        int index = -1;
-        while (index < 0 && i < list.size()) {
-            if (list.get(i).getContent() == el)
-                index = i;
-            i++;
-        }
-        return index;
-    }
-
     public void highlightAt(int index) {
         ArrayItem item = list.get(index);
         item.highlight();

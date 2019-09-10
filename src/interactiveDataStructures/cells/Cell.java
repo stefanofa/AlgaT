@@ -53,11 +53,6 @@ public abstract class Cell extends StackPane implements ICell {
     }
 
     @Override
-    public String getContent() {
-        return text.getText();
-    }
-
-    @Override
     public void setColor(Color color) {
         FillTransition ft = new FillTransition(Config.ANIMATION_DURATION, shape, this.color, color);
         this.color = color;

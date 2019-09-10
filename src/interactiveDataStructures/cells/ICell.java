@@ -6,7 +6,6 @@ import javafx.scene.paint.Color;
 public interface ICell {
     void setContent(String content);
     void setContent(Integer content);
-    String getContent();
     void setColor(Color color);
     FillTransition temporaryColorChange(Color color);
     FillTransition revertColorChange();

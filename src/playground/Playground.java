@@ -50,7 +50,7 @@ public class Playground extends BaseController {
     }
 
     @FXML private void exit() {
-        switchSceneFromFxmlPath("../menu/menu.fxml");
+        switchSceneFromFxmlPath("/menu/menu.fxml");
     }
 
     @FXML private void reset() {

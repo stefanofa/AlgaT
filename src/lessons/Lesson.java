@@ -23,6 +23,7 @@ public class Lesson extends BaseController {
     protected Text procedure = new Text();
     protected Text currentSubProcedure = new Text();
     protected Text currentAtomicOperation = new Text();
+    protected String topic;
 
     public Lesson() {
         procedure.setFont(Font.font(Config.TEXT_SIZE));
@@ -49,7 +50,9 @@ public class Lesson extends BaseController {
             if (slideIndex < slides.size())
                 setSlide(slideIndex);
             else
-                goToMenu(null);
+                if (topic != null)
+                    goToQuiz(topic);
+                else goToMenu(null);
         }
     }
 

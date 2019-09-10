@@ -1,6 +1,7 @@
 package quizEngine;
 
 import config.BaseController;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,8 +22,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
-import java.io.FileReader;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 public class QuizEngine extends BaseController{
 
@@ -201,9 +203,8 @@ public class QuizEngine extends BaseController{
     private JSONObject getQuizFromJson() {
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader(
-                    "src/lessons/" + getParam() + "/quiz/" + getParam() + "Quiz.json"));
-
+            InputStream in = getClass().getResourceAsStream("/lessons/" + getParam() + "/quiz/" + getParam() + "Quiz.json");
+            Object obj = parser.parse(new BufferedReader(new InputStreamReader(in)));
 
             return (JSONObject)obj;
 
@@ -217,10 +218,10 @@ public class QuizEngine extends BaseController{
     private void showImg(String imgName) {
         if (imgName != "null") {
             try {
-                File imgfile = new File("src/lessons/" + getParam() + "/quiz/pictures/" + imgName);
+                BufferedImage buff = ImageIO.read(getClass().getResourceAsStream("/lessons/" + getParam() + "/quiz/pictures/" + imgName));
                 final Stage dialog = new Stage();
                 final ImageView imv = new ImageView();
-                final Image img = new Image(imgfile.toURI().toString());
+                final Image img = SwingFXUtils.toFXImage(buff, null);
                 imv.setImage(img);
                 dialog.initModality(Modality.APPLICATION_MODAL);
                 dialog.initOwner(this.getActualStage());
@@ -239,7 +240,7 @@ public class QuizEngine extends BaseController{
     @FXML protected void goToMenu(ActionEvent event) {
         try {
             this.getActualStage().setFullScreen(false);
-            switchSceneFromFxmlPath("../menu/menu.fxml");
+            switchSceneFromFxmlPath("/menu/menu.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

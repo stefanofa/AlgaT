@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import config.BaseController;
 
-public class Intro extends BaseController{
+public class Intro extends BaseController {
 
 
     @FXML private void openLink(ActionEvent event) {
@@ -22,7 +22,7 @@ public class Intro extends BaseController{
 
     @FXML private void Start(ActionEvent event) {
         try {
-            switchSceneFromFxmlPath("../menu/menu.fxml");
+            switchSceneFromFxmlPath("/menu/menu.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

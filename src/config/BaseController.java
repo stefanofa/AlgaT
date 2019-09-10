@@ -42,7 +42,7 @@ public abstract class BaseController {
             //the fields stage and param have null value inside the initialize scope
             ctrl.setStage(this.getActualStage());
             ctrl.setParam(param);
-            getActualStage().setScene(new Scene(root, 1366, 768));
+            getActualStage().setScene(new Scene(root, 1354, 772));
             //if it's not overrided, startthis.progressBar.getProgress() + Ctrl() does nothing
             ctrl.startCtrl();
         }
@@ -55,10 +55,14 @@ public abstract class BaseController {
     @FXML
     protected void goToMenu(ActionEvent event) {
         try {
-            switchSceneFromFxmlPath("../../../menu/menu.fxml");
+            switchSceneFromFxmlPath("/menu/menu.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML protected void goToQuiz(String topic) {
+        switchSceneFromFxmlPath("/quizEngine/quizEngine.fxml", topic);
     }
 
 }

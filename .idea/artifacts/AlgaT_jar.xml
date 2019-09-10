@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AlgaT:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AlgaT_jar</output-path>
+    <root id="archive" name="AlgaT.jar">
+      <element id="module-output" name="AlgaT" />
+      <element id="extracted-dir" path="$USER_HOME$/Public/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="library" level="project" name="lib" />
+    </root>
+  </artifact>
+</component>

@@ -6,13 +6,11 @@ import interactiveDataStructures.cells.CircleCell;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class TreeContainer extends Pane {

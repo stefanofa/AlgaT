@@ -1,9 +1,9 @@
+import config.BaseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import config.BaseController;
 import javafx.util.Duration;
 
 public class Main extends Application {
@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("intro/intro.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/intro/intro.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("AlgaT");
         primaryStage.setScene(new Scene(root, 1366, 768));

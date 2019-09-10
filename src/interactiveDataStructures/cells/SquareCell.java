@@ -14,14 +14,4 @@ public class SquareCell extends Cell {
         initialize();
     }
 
-    public SquareCell(String content) {
-        super(content);
-        initialize();
-    }
-
-    public SquareCell(Integer content) {
-        super(content);
-        initialize();
-    }
-
 }
