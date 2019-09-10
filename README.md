@@ -5,7 +5,7 @@
 - Per compilare ed eseguire AlgaT è stata utilizzata una versione Java Development Kit modificata e reperibile [qui](https://www.azul.com/downloads/zulu-community/), facendo particolare attenzione alla dicitura "JDK FX"
 - La JDK utilizzata è versione 11
 - Recarsi da terminale nella directory dove è stata scaricata la versione corretta del JDK FX.
-- Lanciare i seguenti comandi
+- Lanciare,in ordine, i seguenti comandi
 ```bash
 tar -xzvf zulu11.33.15-ca-fx-jdk11.0.4-linux_x64.tar.gz
 sudo mv zulu11.33.15-ca-fx-jdk11.0.4-linux_x64 /usr/lib/jvm/
