@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BaseController {
+public abstract class BaseController {
 
     private Stage stage;
     private String param;
@@ -43,7 +43,7 @@ public class BaseController {
             ctrl.setStage(this.getActualStage());
             ctrl.setParam(param);
             getActualStage().setScene(new Scene(root, 1366, 768));
-            //if it's not overrided, startCtrl() does nothing
+            //if it's not overrided, startthis.progressBar.getProgress() + Ctrl() does nothing
             ctrl.startCtrl();
         }
         catch (Exception e) {

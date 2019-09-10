@@ -171,7 +171,7 @@ public class QuizEngine extends BaseController{
     @FXML private void nextQuestion() {
         if (this.actualCheckedAnswer == this.actualCorrectAnswer) {
             if (this.actualQuestion < this.nDomande) {
-                this.progressBar.setProgress(this.progressBar.getProgress() + (1.0 / this.nDomande) * this.actualQuestion);
+                this.progressBar.setProgress((1.0 / this.nDomande) * this.actualQuestion);
                 this.actualQuestion++;
                 showQuestion();
             } else {

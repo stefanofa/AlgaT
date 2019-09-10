@@ -12,7 +12,14 @@ public class Menu extends BaseController {
 
     @FXML
     protected void initialize() {
-            }
+    }
+
+    //to correctly resize the dimension of the stage in the menu (this have to be done because of a bug in JAVAFX)
+    @Override protected void startCtrl() {
+        final boolean resizable = getActualStage().isResizable();
+        getActualStage().setResizable(!resizable);
+        getActualStage().setResizable(resizable);
+    }
 
     @FXML private void learn(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
