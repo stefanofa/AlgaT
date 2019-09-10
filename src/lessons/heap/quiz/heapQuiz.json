@@ -1,0 +1,66 @@
+{
+    "Topic": "heap",
+    "nDomande": 5,
+    "Domande": [
+        {
+            "Domanda": "Quali delle seguenti formule che si riferisce alla relazione tra\ngli indici dell'array e parentela padre-figlio nell'albero \u00e8 errata?",
+            "nRisposte": 4,
+            "imgName": "null",
+            "Risposte": [
+                "padre = indice / 2",
+                "figlioSX = indice * 2",
+                "padre = indice * 2",
+                "figlioDX = indice * 2 + 1"
+            ],
+            "RispostaCorretta": 3
+        },
+        {
+            "Domanda": "Cosa si può dire sull'heap mostrato nell'immagine?",
+            "nRisposte": 4,
+            "imgName": "albero.png",
+            "Risposte": [
+                "Viola tutte le proprietà dell'heap",
+                "Viola la proprietà di ordinamento agli indici 5 e 11",
+                "Viola la proprietà di bilanciamento perchè l'elemento di indice 7 non ha figli",
+                "Viola la proprietà di ordinamento agli indici 4 e 9"
+            ],
+            "RispostaCorretta": 4
+        },
+        {
+            "Domanda": "Perchè la procedura maxHeapRestore assume che tutto il resto dell'heap rispetti i vincoli?",
+            "nRisposte": 4,
+            "imgName": "null",
+            "Risposte": [
+                "Perchè è progettata per ripristinare il vincolo di ordinamento solo localmente",
+                "Perchè per costruzione è impossibile che il vincolo venga violato in più di un punto",
+                "Perchè è un'operazione atomica",
+                "Perchè, a differenza della minHeapRestore, lavora dalla radice verso le foglie"
+            ],
+            "RispostaCorretta": 1
+        },
+        {
+            "Domanda": "Sta venendo eseguita la procedura heapBuild, qual è la prossima operazione da eseguire?",
+            "nRisposte": 4,
+            "imgName": "heapBuild.png",
+            "Risposte": [
+                "swap(1, 2)",
+                "swap(4, 9)",
+                "swap(1, 13)",
+                "maxHeapRestore(1)"
+            ],
+            "RispostaCorretta": 2
+        },
+        {
+            "Domanda": "Perchè la procedura heapBuild parte con il maxHeapRestore\nda n/2 e non da n (per poi arrivare a 1)?",
+            "nRisposte": 4,
+            "imgName": "null",
+            "Risposte": [
+                "Perchè il maxHeapRestore assume che tutto il resto dell'albero rispetti già il vincolo di ordinamento",
+                "Per convenzione, infatti specularmente si potrebbe anche eseguire da n a n/2 piuttosto che da n/2 a 1",
+                "Perchè è possibile costruire l'heap solo nella prima metà dell'albero",
+                "Perchè tutti gli elementi da n/2 in poi sono foglie, e quindi già rispettano localmente il vincolo di ordinamento"
+            ],
+            "RispostaCorretta": 4
+        }
+    ]
+}

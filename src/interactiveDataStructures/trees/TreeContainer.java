@@ -62,7 +62,6 @@ public class TreeContainer extends Pane {
 
     public void load(BinaryTree tree) {
         this.getChildren().clear();
-        System.out.println(this.getChildren());
         int n = tree.size();
         int height = (int) (Math.log(n) / Math.log(2));
         int level = 0;

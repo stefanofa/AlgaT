@@ -31,7 +31,7 @@ public class Playground extends BaseController {
             Integer i1, i2;
             i1 = Integer.parseInt(index1.getText()) - 1;
             i2 = Integer.parseInt(index2.getText()) - 1;
-            if (i1 <= 0 || i2 <= 0 || i1 == i2 || i1 > h.size() || i2 > h.size())
+            if (i1 < 0 || i2 < 0 || i1 == i2 || i1 >= h.size() || i2 >= h.size())
                 throw new NumberFormatException();
             h.swap(i1, i2);
             ge.next();

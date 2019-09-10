@@ -235,7 +235,8 @@ public class QuizEngine extends BaseController{
         }
     }
 
-    @FXML private void goToMenu(ActionEvent event) {
+    @Override
+    @FXML protected void goToMenu(ActionEvent event) {
         try {
             this.getActualStage().setFullScreen(false);
             switchSceneFromFxmlPath("../menu/menu.fxml");

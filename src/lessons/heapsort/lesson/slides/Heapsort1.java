@@ -46,7 +46,7 @@ public class Heapsort1 extends Slide {
         return "heapsort(Item[] A)\n" +
                 "\theapBuild(A)\n" +
                 "\tfor i from size to 1 do\n" +
-                "\t\tA[0] <-> A[i]\n" +
-                "\t\tmaxHeapRestore(A, 0)\n";
+                "\t\tA[1] <-> A[i]\n" +
+                "\t\tmaxHeapRestore(A, 1)\n";
     }
 }

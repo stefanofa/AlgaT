@@ -49,7 +49,7 @@ public class Lesson extends BaseController {
             if (slideIndex < slides.size())
                 setSlide(slideIndex);
             else
-                switchSceneFromFxmlPath("menu/menu.fxml");
+                goToMenu(null);
         }
     }
 
@@ -63,7 +63,7 @@ public class Lesson extends BaseController {
             if (slideIndex >= 0)
                 setSlide(slideIndex);
             else
-                switchSceneFromFxmlPath("menu/menu.fxml");
+                goToMenu(null);
         }
     }
 
@@ -87,6 +87,7 @@ public class Lesson extends BaseController {
                 currentAtomicOperation.setText(ge.getCurrentAtomicOperation());
             }
         });
+        autoButton.setText("PLAY");
     }
 
 }

@@ -20,7 +20,7 @@ public class Heap3 extends Slide {
                 "Per farlo, si utilizza la procedura maxHeapRestore iterativamente, partendo prima dai livelli più bassi (ovvero partendo da n/2\n" +
                 "in quanto tutti gli elementi da n/2+1 fino a n sono foglie) per poi risalire verso la radice. Questo perchè la procedura\n" +
                 "maxHeapRestore richiamata sulla radice di un sottoalbero assume che tutto il resto del sottoalbero rispetti già le proprietà\n" +
-                "dell'HEAP, quindi ovviamente non la si può richiamare la prima volta sulla radice perchè tale assunzione non sarebbe vera.");
+                "dell'HEAP, quindi ovviamente non la si può richiamare la prima volta sulla radice perchè tale assunzione non sarebbe vera.\n");
 
         Random random = new Random();
         ArrayList<Integer> a = new ArrayList<Integer>();

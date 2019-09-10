@@ -1,6 +1,6 @@
 {
     "Topic": "heapsort",
-    "nDomande": 4,
+    "nDomande": 5,
     "Domande": [
         {
             "Domanda": "Perch\u00e8 viene utilizzata la maxHeapRestore nell'ordinamento crescente?",
@@ -49,6 +49,18 @@
                 "Swap(1,13)"
             ],
             "RispostaCorretta": 4
+        },
+        {
+            "Domanda": "Come si può modificare efficientemente l'heapsort per ordinare in maniera decrescente?",
+            "nRisposte": 4,
+            "imgName": "null",
+            "Risposte": [
+                "Non è possibile",
+                "Facendo partire il ciclo da 1 al posto che da n",
+                "Sostituendo maxHeapRestore con minHeapRestore",
+                "Utilizzando un vettore d'appoggio per il re-ordinamento"
+            ],
+            "RispostaCorretta": 3
         }
     ]
 }

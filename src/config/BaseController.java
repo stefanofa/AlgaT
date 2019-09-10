@@ -53,7 +53,7 @@ public class BaseController {
     }
 
     @FXML
-    private void goToMenu(ActionEvent event) {
+    protected void goToMenu(ActionEvent event) {
         try {
             switchSceneFromFxmlPath("../../../menu/menu.fxml");
         } catch (Exception e) {

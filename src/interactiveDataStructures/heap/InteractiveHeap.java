@@ -45,9 +45,9 @@ public class InteractiveHeap extends Parent {
     private void maxHeapRestore(int i, int dim) {
         setSubProcedure("maxHeapRestore(" + (i + 1) + ")");
         int max = i;
-        if (l(i) <= dim && heap.get(l(i)) > heap.get(max))
+        if (l(i) < dim && heap.get(l(i)) > heap.get(max))
             max = l(i);
-        if (r(i) <= dim && heap.get(r(i)) > heap.get(max))
+        if (r(i) < dim && heap.get(r(i)) > heap.get(max))
             max = r(i);
         if (i != max) {
             swap(i, max);
